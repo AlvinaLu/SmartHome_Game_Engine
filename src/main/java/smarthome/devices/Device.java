@@ -1,4 +1,7 @@
 package smarthome.devices;
 
-public interface Device {
+public interface Device<T> {
+    T getData();
+
+    String getDoc();
 }

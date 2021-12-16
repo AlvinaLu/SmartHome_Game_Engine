@@ -10,4 +10,16 @@ public class Transition<NAME, EVENT extends SmEvent> {
         this.target = target;
         this.event = event;
     }
+
+    public NAME getSource() {
+        return source;
+    }
+
+    public NAME getTarget() {
+        return target;
+    }
+
+    public EVENT getEvent() {
+        return event;
+    }
 }
