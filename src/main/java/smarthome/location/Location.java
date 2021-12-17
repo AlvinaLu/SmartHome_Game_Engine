@@ -4,25 +4,34 @@ import smarthome.devices.Device;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 public class Location {
-    private Set<? extends Device> setDevices = new HashSet<>();
-    private Set<? extends  Location> setLocations = new HashSet<>();
+    private String id = UUID.randomUUID().toString();
+    private Set<? extends Device> devices = new HashSet<>();
+    private Set<? extends  Location> locations = new HashSet<>();
 
-    public Set<? extends Device> getSetDevices() {
-        return setDevices;
+    public Location(String id) {
+        this.id = id;
     }
 
-    public void setSetDevices(Set<? extends Device> setDevices) {
-        this.setDevices = setDevices;
+    public Set<? extends Device> getDevices() {
+        return devices;
     }
 
-    public Set<? extends Location> getSetLocations() {
-        return setLocations;
+    public void setDevices(Set<? extends Device> devices) {
+        this.devices = devices;
     }
 
-    public void setSetLocations(Set<? extends Location> setLocations) {
-        this.setLocations = setLocations;
+    public Set<? extends Location> getLocations() {
+        return locations;
     }
 
+    public void setLocations(Set<? extends Location> locations) {
+        this.locations = locations;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

@@ -9,7 +9,10 @@ import smarthome.statemachine.State;
 import smarthome.statemachine.StateMachine;
 import smarthome.statemachine.Transition;
 
+import java.util.UUID;
+
 public class Stove extends StateMachine<StoveState, StoveEvent> implements Device<StoveData> {
+    private String id = UUID.randomUUID().toString();
 
     public Stove(){
         super(new State<>(StoveState.OFF));
@@ -35,5 +38,10 @@ public class Stove extends StateMachine<StoveState, StoveEvent> implements Devic
     @Override
     protected void onTransition(Transition<StoveState, StoveEvent> transition, Message<StoveEvent> message){
 
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 }

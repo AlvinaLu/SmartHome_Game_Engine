@@ -1,18 +1,9 @@
-package smarthome.devices.refrigerator;
+package smarthome.devices.electricity_generator;
 
-public class RefrigeratorData {
-    private int currentTemperature = 21;
+public class GeneratorData {
     private int electricityConsumption;
     private int electricityPerHour;
     private int resourceHours;
-
-    public int getCurrentTemperature() {
-        return currentTemperature;
-    }
-
-    public void setCurrentTemperature(int currentTemperature) {
-        this.currentTemperature = currentTemperature;
-    }
 
     public int getElectricityConsumption() {
         return electricityConsumption;

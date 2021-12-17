@@ -1,6 +1,6 @@
-package smarthome.devices.refrigerator;
+package smarthome.devices.heater;
 
-public class RefrigeratorData {
+public class HeaterData {
     private int currentTemperature = 21;
     private int electricityConsumption;
     private int electricityPerHour;
