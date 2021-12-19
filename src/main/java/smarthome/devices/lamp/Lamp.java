@@ -1,6 +1,7 @@
 package smarthome.devices.lamp;
 
 import smarthome.devices.Device;
+import smarthome.servises.IdGenerator;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.State;
 import smarthome.statemachine.StateMachine;
@@ -9,7 +10,7 @@ import smarthome.statemachine.Transition;
 import java.util.UUID;
 
 public class Lamp extends StateMachine<LampState, LampEvent> implements Device<LampData> {
-    private String id = UUID.randomUUID().toString();
+    private String id;
     private LampData lampData = new LampData();
 
     public Lamp() {
@@ -17,7 +18,6 @@ public class Lamp extends StateMachine<LampState, LampEvent> implements Device<L
         addTransition(new Transition<>(LampState.OFF, LampState.ON, LampEvent.TURN_ON));
         addTransition(new Transition<>(LampState.ON, LampState.OFF, LampEvent.TURN_OFF));
     }
-
 
 
     @Override
@@ -38,6 +38,11 @@ public class Lamp extends StateMachine<LampState, LampEvent> implements Device<L
     @Override
     public String getDoc() {
         return null;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package smarthome.devices.refrigerator;
 
 public enum RefrigeratorState {
-    ON, OFF, CHANGE_TEMPERATURE, UNFREEZE,
+    ON, OFF, COOLING, HEATING, UNFREEZE, CHANGE_TEMPERATURE,
 }
 

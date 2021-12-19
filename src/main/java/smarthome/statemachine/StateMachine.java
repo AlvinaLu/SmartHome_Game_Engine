@@ -1,5 +1,7 @@
 package smarthome.statemachine;
 
+import smarthome.servises.DeviceLog;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Future;
@@ -28,9 +30,12 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
             if (currentTask!=null){
                 currentTask.cancel(true);
             }
-            onTransition(transition, message);
+            DeviceLog.getInstance().addEntry(getId(), transition.getTarget());
             System.out.println(this+": transitioning from "  + transition.getSource() + " to " + transition.getTarget());
             currentState = new State<>(transition.getTarget());
+            onTransition(transition, message);
+
+
         } catch (Exception ex) {
             ex.printStackTrace();
             throw ex;
@@ -42,6 +47,8 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
     }
 
     protected abstract void onTransition(Transition<NAME, EVENT> transition, Message<EVENT> message);
+
+    protected abstract String getId();
 
     public void addTransition(Transition<NAME,EVENT> transition) {
         transitions.add(transition);

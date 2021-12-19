@@ -1,9 +1,11 @@
 package smarthome.devices.stove;
 
 import smarthome.devices.Device;
+import smarthome.devices.lamp.Lamp;
 import smarthome.devices.refrigerator.RefrigeratorData;
 import smarthome.devices.refrigerator.RefrigeratorEvent;
 import smarthome.devices.refrigerator.RefrigeratorState;
+import smarthome.servises.IdGenerator;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.State;
 import smarthome.statemachine.StateMachine;
@@ -12,7 +14,7 @@ import smarthome.statemachine.Transition;
 import java.util.UUID;
 
 public class Stove extends StateMachine<StoveState, StoveEvent> implements Device<StoveData> {
-    private String id = UUID.randomUUID().toString();
+    private String id;
 
     public Stove(){
         super(new State<>(StoveState.OFF));
@@ -43,5 +45,10 @@ public class Stove extends StateMachine<StoveState, StoveEvent> implements Devic
     @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 }

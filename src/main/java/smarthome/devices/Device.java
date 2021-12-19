@@ -6,4 +6,6 @@ public interface Device<T> {
     T getData();
 
     String getDoc();
+
+    void setId(String id);
 }

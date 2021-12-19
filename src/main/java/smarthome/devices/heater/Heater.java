@@ -1,6 +1,9 @@
 package smarthome.devices.heater;
 
 import smarthome.devices.Device;
+import smarthome.devices.electricity_generator.Generator;
+import smarthome.devices.lamp.Lamp;
+import smarthome.servises.IdGenerator;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.State;
 import smarthome.statemachine.StateMachine;
@@ -9,11 +12,11 @@ import smarthome.statemachine.Transition;
 import java.util.UUID;
 
 public class Heater extends StateMachine<HeaterState, HeaterEvent> implements Device<HeaterData> {
-    private String id = UUID.randomUUID().toString();
+    private String id;
     private int targetTemperature = 0;
     private HeaterData heaterData = new HeaterData();
 
-    public Heater(){
+    public Heater() {
         super(new State<>(HeaterState.OFF));
         addTransition(new Transition<>(HeaterState.OFF, HeaterState.ON, HeaterEvent.TURN_ON));
         addTransition(new Transition<>(HeaterState.ON, HeaterState.OFF, HeaterEvent.TURN_OFF));
@@ -33,6 +36,11 @@ public class Heater extends StateMachine<HeaterState, HeaterEvent> implements De
     @Override
     public String getDoc() {
         return "heater";
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
