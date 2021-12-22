@@ -1,23 +1,22 @@
 package smarthome.devices.electricity_generator;
 
 import smarthome.devices.Device;
-import smarthome.devices.lamp.Lamp;
-import smarthome.devices.refrigerator.RefrigeratorState;
-import smarthome.servises.IdGenerator;
-import smarthome.statemachine.Message;
-import smarthome.statemachine.State;
 import smarthome.statemachine.StateMachine;
 import smarthome.statemachine.Transition;
 
-import java.util.UUID;
-
 public class Generator extends StateMachine<GeneratorState, GeneratorEvent> implements Device<GeneratorData> {
     private String id;
+    private GeneratorData data;
 
     public Generator() {
-        super(new State<>(GeneratorState.OFF));
+        super(GeneratorState.OFF);
         addTransition(new Transition<>(GeneratorState.OFF, GeneratorState.ON, GeneratorEvent.TURN_ON));
         addTransition(new Transition<>(GeneratorState.ON, GeneratorState.OFF, GeneratorEvent.TURN_OFF));
+    }
+
+    @Override
+    protected void onEnter(GeneratorState currentState) {
+
     }
 
     @Override
@@ -27,7 +26,7 @@ public class Generator extends StateMachine<GeneratorState, GeneratorEvent> impl
 
     @Override
     public GeneratorData getData() {
-        return null;
+        return data;
     }
 
     @Override
@@ -41,7 +40,8 @@ public class Generator extends StateMachine<GeneratorState, GeneratorEvent> impl
     }
 
     @Override
-    protected void onTransition(Transition<GeneratorState, GeneratorEvent> transition, Message<GeneratorEvent> message) {
-
+    public void setData(GeneratorData data) {
+        this.data = data;
     }
+
 }

@@ -1,10 +1,21 @@
 package smarthome.devices.refrigerator;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 public class RefrigeratorData {
-    private int currentTemperature = 21;
+    private int currentTemperature = 25;
     private int electricityConsumption;
     private int electricityPerHour;
     private int resourceHours;
+    private int targetTemperature;
+
+    public int getTargetTemperature() {
+        return targetTemperature;
+    }
+
+    public void setTargetTemperature(int targetTemperature) {
+        this.targetTemperature = targetTemperature;
+    }
 
     public int getCurrentTemperature() {
         return currentTemperature;

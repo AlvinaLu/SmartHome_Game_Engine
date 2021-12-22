@@ -3,22 +3,25 @@ package smarthome.statemachine;
 import smarthome.servises.DeviceLog;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 
 public abstract class StateMachine<NAME, EVENT extends SmEvent> {
-    private State<NAME, EVENT> currentState;
+    private NAME currentState;
     private Future<?> currentTask;
     private Set<Transition<NAME,EVENT>> transitions = new HashSet<>();
 
-    public StateMachine(State<NAME, EVENT> currentState) {
+    private Map<String,Object> messageData;//Save additional data from message, for stateMachine state processing;
+
+    public StateMachine(NAME currentState) {
         this.currentState = currentState;
     }
 
     public void onMessage(Message<EVENT> message) {
         try {
             Transition<NAME, EVENT> transition = transitions.stream()
-                    .filter(it -> it.getSource().equals(currentState.getName()) && it.getEvent().equals(message.getEvent()))
+                    .filter(it -> it.getSource().equals(currentState) && it.getEvent().equals(message.getEvent()))
                     .findAny()
                     .orElse(null);
 
@@ -32,8 +35,11 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
             }
             DeviceLog.getInstance().addEntry(getId(), transition.getTarget());
             System.out.println(this+": transitioning from "  + transition.getSource() + " to " + transition.getTarget());
-            currentState = new State<>(transition.getTarget());
-            onTransition(transition, message);
+            currentState = transition.getTarget();
+            messageData = message.getData();
+
+            //TODO save to json
+            onEnter(currentState);
 
 
         } catch (Exception ex) {
@@ -42,15 +48,31 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
         }
     }
 
+    protected abstract void onEnter(NAME currentState);
+
     public void setCurrentTask(Future<?> currentTask) {
         this.currentTask = currentTask;
     }
 
-    protected abstract void onTransition(Transition<NAME, EVENT> transition, Message<EVENT> message);
-
     protected abstract String getId();
+
+    public Map<String, Object> getMessageData() {
+        return messageData;
+    }
+
+    public NAME getCurrentState() {
+        return currentState;
+    }
 
     public void addTransition(Transition<NAME,EVENT> transition) {
         transitions.add(transition);
+    }
+
+    public void setMessageData(Map<String, Object> messageData) {
+        this.messageData = messageData;
+    }
+
+    public void setCurrentState(NAME currentState) {
+        this.currentState = currentState;
     }
 }

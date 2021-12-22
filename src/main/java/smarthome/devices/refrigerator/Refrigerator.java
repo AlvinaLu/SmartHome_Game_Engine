@@ -3,7 +3,6 @@ package smarthome.devices.refrigerator;
 import smarthome.devices.Device;
 import smarthome.servises.Scheduler;
 import smarthome.statemachine.Message;
-import smarthome.statemachine.State;
 import smarthome.statemachine.StateMachine;
 import smarthome.statemachine.Transition;
 
@@ -12,14 +11,11 @@ import java.util.concurrent.TimeUnit;
 public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEvent> implements Device<RefrigeratorData> {
     private Scheduler scheduler =Scheduler.getInstance();
     private String id;
-
-    private int targetTemperature = 0;
-
     private RefrigeratorData refrigeratorData = new RefrigeratorData();
 
 
     public Refrigerator() {
-        super(new State<>(RefrigeratorState.OFF));
+        super(RefrigeratorState.OFF);
         addTransition(new Transition<>(RefrigeratorState.OFF, RefrigeratorState.ON, RefrigeratorEvent.TURN_ON));
         addTransition(new Transition<>(RefrigeratorState.ON, RefrigeratorState.OFF, RefrigeratorEvent.TURN_OFF));
         addTransition(new Transition<>(RefrigeratorState.ON, RefrigeratorState.CHANGE_TEMPERATURE, RefrigeratorEvent.CHANGE_TEMPERATURE));
@@ -56,21 +52,26 @@ public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEv
     }
 
     @Override
-    protected void onTransition(Transition<RefrigeratorState, RefrigeratorEvent> transition, Message<RefrigeratorEvent> message) {
-        if (message.getEvent().equals(RefrigeratorEvent.CHANGE_TEMPERATURE)) {
-            int target = (Integer) message.getData().get("target");
+    public void setData(RefrigeratorData data) {
+        this.refrigeratorData = data;
+    }
+
+    @Override
+    protected void onEnter(RefrigeratorState currentState) {
+        if (currentState.equals(RefrigeratorState.CHANGE_TEMPERATURE)) {
+            int target = (Integer) getMessageData().get("target");
             changeTemperature(target);
-        } else if (message.getEvent().equals(RefrigeratorEvent.COOL) || message.getEvent().equals(RefrigeratorEvent.HEAT)) {
-            int changeTemp = Math.abs(targetTemperature - getData().getCurrentTemperature());
+        } else if (currentState.equals(RefrigeratorState.COOLING) || currentState.equals(RefrigeratorState.HEATING)) {
+            int changeTemp = Math.abs(refrigeratorData.getTargetTemperature() - getData().getCurrentTemperature());
             setCurrentTask(scheduler.schedule(() -> {
-                getData().setCurrentTemperature(targetTemperature);
+                getData().setCurrentTemperature(refrigeratorData.getCurrentTemperature());
                 onMessage(Message.toDevice(RefrigeratorEvent.TURN_ON,null));
-            }, 5*changeTemp, TimeUnit.MINUTES));
+            }, 1*changeTemp, TimeUnit.HOURS));
         }
     }
 
     private void changeTemperature(int target) {
-        this.targetTemperature = target;
+        refrigeratorData.setTargetTemperature(target);
         if (target < this.getData().getCurrentTemperature()) {
             onMessage(Message.toDevice(RefrigeratorEvent.COOL,null));
             System.out.println("Cooling to " + target + "C");

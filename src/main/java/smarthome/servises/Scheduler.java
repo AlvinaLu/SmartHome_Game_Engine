@@ -27,15 +27,19 @@ public class Scheduler {
         return instance;
     }
 
-    private double timeScale = 1;
+    private long timeScale = 1;
 
 
     private Thread mainThread;
 
     private Set<Future<?>> tasks = ConcurrentHashMap.newKeySet();
 
-    public void setTimeScale(double timeScale) {
+    public void setTimeScale(long timeScale) {
         this.timeScale = timeScale;
+    }
+
+    public long getTimeScale() {
+        return timeScale;
     }
 
     public ScheduledFuture<?> schedule(Runnable command,
@@ -44,8 +48,12 @@ public class Scheduler {
         long millis = unit.toMillis(delay);
         ScheduledFuture<?> schedule = sysScheduler.schedule(() -> {
             Thread.currentThread().setName(command.getClass().getName());
-            command.run();
-        }, (long) (millis / timeScale), TimeUnit.MILLISECONDS);
+            try {
+                command.run();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }, (millis / timeScale), TimeUnit.MILLISECONDS);
 
         tasks.add(schedule);
 

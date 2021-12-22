@@ -8,4 +8,6 @@ public interface Device<T> {
     String getDoc();
 
     void setId(String id);
+
+    void setData(T data);
 }
