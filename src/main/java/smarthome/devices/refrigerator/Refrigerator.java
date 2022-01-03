@@ -1,5 +1,6 @@
 package smarthome.devices.refrigerator;
 
+import smarthome.Dispatcher;
 import smarthome.devices.Device;
 import smarthome.servises.Scheduler;
 import smarthome.statemachine.Message;
@@ -65,7 +66,7 @@ public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEv
             int changeTemp = Math.abs(refrigeratorData.getTargetTemperature() - getData().getCurrentTemperature());
             setCurrentTask(scheduler.schedule(() -> {
                 getData().setCurrentTemperature(refrigeratorData.getCurrentTemperature());
-                onMessage(Message.toDevice(RefrigeratorEvent.TURN_ON,null));
+                Dispatcher.getInstance().sendMessage(Message.toDevice(RefrigeratorEvent.TURN_ON,id));
             }, 1*changeTemp, TimeUnit.HOURS));
         }
     }

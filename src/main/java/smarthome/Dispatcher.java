@@ -1,7 +1,9 @@
 package smarthome;
 
+import jdk.jfr.FlightRecorder;
 import smarthome.devices.Device;
 import smarthome.location.Location;
+import smarthome.sensors.Sensor;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;
 
@@ -33,6 +35,12 @@ public class Dispatcher {
         for (Location loc : locations) {
             mapLocation.put(loc.getId(), loc);
             recurseLocation(loc);
+        }
+
+        for(Device device: mapDevice.values()){
+            if(device instanceof StateMachine){
+                ((StateMachine<?, ?>) device).init();
+            }
         }
     }
 
@@ -73,8 +81,10 @@ public class Dispatcher {
     }
     private void recurseLocationMessage(Location location, Message<?> message){
             for (Device<?> device : location.getDevices()) {
-                StateMachine<?, ?> sm = (StateMachine<?, ?>) device;
-                sm.onMessage((Message) message);
+                if(device instanceof StateMachine) {
+                    StateMachine<?, ?> sm = (StateMachine<?, ?>) device;
+                    sm.onMessage((Message) message);
+                }
             }
             for (Location loc: location.getLocations()) {
                 recurseLocationMessage(loc, message);
@@ -82,5 +92,11 @@ public class Dispatcher {
     }
 
 
-
+    public Sensor getSensor(String id) {
+       if(mapDevice.get(id) instanceof Sensor){
+           return (Sensor) mapDevice.get(id);
+       }else {
+           throw new IllegalStateException("Device is not a sensor");
+       }
+    }
 }

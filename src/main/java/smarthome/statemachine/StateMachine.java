@@ -1,6 +1,7 @@
 package smarthome.statemachine;
 
 import smarthome.servises.DeviceLog;
+import smarthome.servises.LocationConfiguration;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -37,8 +38,7 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
             System.out.println(this+": transitioning from "  + transition.getSource() + " to " + transition.getTarget());
             currentState = transition.getTarget();
             messageData = message.getData();
-
-            //TODO save to json
+            LocationConfiguration.getInstance().save();
             onEnter(currentState);
 
 
@@ -46,6 +46,10 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
             ex.printStackTrace();
             throw ex;
         }
+    }
+
+    public void init(){
+        onEnter(currentState);
     }
 
     protected abstract void onEnter(NAME currentState);
