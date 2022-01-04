@@ -32,6 +32,11 @@ public class Kettle extends StateMachine<KettleState, KettleEvent> implements De
     public String getId() { return this.id; }
 
     @Override
+    public KettleEvent toEvent(String name) {
+        return KettleEvent.valueOf(name);
+    }
+
+    @Override
     public KettleData getData() {
         return this.kettleData;
     }

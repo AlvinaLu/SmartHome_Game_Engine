@@ -39,6 +39,11 @@ public class AudioStation extends StateMachine<AudioStationState, AudioStationEv
     }
 
     @Override
+    public AudioStationEvent toEvent(String name) {
+        return AudioStationEvent.valueOf(name);
+    }
+
+    @Override
     public AudioStationData getData() {
         return this.audioStationData;
     }

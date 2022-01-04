@@ -29,6 +29,11 @@ public class Oven extends StateMachine<OvenState, OvenEvent> implements Device<O
     public String getId() { return this.id; }
 
     @Override
+    public OvenEvent toEvent(String name) {
+        return OvenEvent.valueOf(name);
+    }
+
+    @Override
     public OvenData getData() {
         return this.ovenData;
     }

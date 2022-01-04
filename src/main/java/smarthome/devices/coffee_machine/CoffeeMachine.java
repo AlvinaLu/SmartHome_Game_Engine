@@ -30,6 +30,11 @@ public class CoffeeMachine extends StateMachine<CoffeeMachineState, CoffeeMachin
     public String getId() { return this.id; }
 
     @Override
+    public CoffeeMachineEvent toEvent(String name) {
+        return CoffeeMachineEvent.valueOf(name);
+    }
+
+    @Override
     public CoffeeMachineData getData() { return this.coffeeMachineData; }
 
     @Override
