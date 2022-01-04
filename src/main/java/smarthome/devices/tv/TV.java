@@ -38,6 +38,11 @@ public class TV extends StateMachine<TVState, TVEvent> implements Device<TVData>
     }
 
     @Override
+    public TVEvent toEvent(String name) {
+        return TVEvent.valueOf(name);
+    }
+
+    @Override
     public TVData getData() {
         return this.tvData;
     }
