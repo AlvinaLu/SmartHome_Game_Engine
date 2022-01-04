@@ -26,6 +26,7 @@ public class Dispatcher {
     private Map<String, Location> mapLocation = new HashMap<>();
     private Map<String, Device> mapDevice = new HashMap<>();
 
+
     private Dispatcher() {
 
     }
@@ -37,8 +38,8 @@ public class Dispatcher {
             recurseLocation(loc);
         }
 
-        for(Device device: mapDevice.values()){
-            if(device instanceof StateMachine){
+        for (Device device : mapDevice.values()) {
+            if (device instanceof StateMachine) {
                 ((StateMachine<?, ?>) device).init();
             }
         }
@@ -66,37 +67,52 @@ public class Dispatcher {
                 }
             }
 
-        }else if(message.getToLocationId() != null){
-           Location location =  mapLocation.get(message.getToLocationId());
-           if(location != null){
-               recurseLocationMessage(location, message);
-           }else {
-               System.out.println("Location is not found");
-           }
-        }else{
-            for (Location loc: locations) {
+        } else if (message.getToLocationId() != null) {
+            Location location = mapLocation.get(message.getToLocationId());
+            if (location != null) {
+                recurseLocationMessage(location, message);
+            } else {
+                System.out.println("Location is not found");
+            }
+        } else {
+            for (Location loc : locations) {
                 recurseLocationMessage(loc, message);
             }
         }
     }
-    private void recurseLocationMessage(Location location, Message<?> message){
-            for (Device<?> device : location.getDevices()) {
-                if(device instanceof StateMachine) {
-                    StateMachine<?, ?> sm = (StateMachine<?, ?>) device;
-                    sm.onMessage((Message) message);
-                }
+
+    private void recurseLocationMessage(Location location, Message<?> message) {
+        for (Device<?> device : location.getDevices()) {
+            if (device instanceof StateMachine) {
+                StateMachine<?, ?> sm = (StateMachine<?, ?>) device;
+                sm.onMessage((Message) message);
             }
-            for (Location loc: location.getLocations()) {
-                recurseLocationMessage(loc, message);
-            }
+        }
+        for (Location loc : location.getLocations()) {
+            recurseLocationMessage(loc, message);
+        }
     }
 
 
     public Sensor getSensor(String id) {
-       if(mapDevice.get(id) instanceof Sensor){
-           return (Sensor) mapDevice.get(id);
-       }else {
-           throw new IllegalStateException("Device is not a sensor");
-       }
+        if (mapDevice.get(id) instanceof Sensor) {
+            return (Sensor) mapDevice.get(id);
+        } else if (mapDevice.get(id) == null) {
+            throw new IllegalStateException("Device not found");
+        } else {
+            throw new IllegalStateException("Device is not a sensor");
+        }
+    }
+
+    public Set<? extends Location> getLocations() {
+        return locations;
+    }
+
+    public Map<String, Location> getMapLocation() {
+        return mapLocation;
+    }
+
+    public Map<String, Device> getMapDevice() {
+        return mapDevice;
     }
 }

@@ -25,13 +25,18 @@ public class Generator extends StateMachine<GeneratorState, GeneratorEvent> impl
     }
 
     @Override
+    public GeneratorEvent toEvent(String name) {
+        return GeneratorEvent.valueOf(name);
+    }
+
+    @Override
     public GeneratorData getData() {
         return data;
     }
 
     @Override
     public String getDoc() {
-        return "lamp";
+        return "Generator";
     }
 
     @Override
@@ -44,4 +49,15 @@ public class Generator extends StateMachine<GeneratorState, GeneratorEvent> impl
         this.data = data;
     }
 
+    @Override
+    public boolean isVital() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Generator{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }

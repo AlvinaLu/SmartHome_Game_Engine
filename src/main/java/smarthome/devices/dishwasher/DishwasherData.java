@@ -1,7 +1,6 @@
-package smarthome.devices.heater;
+package smarthome.devices.dishwasher;
 
-public class HeaterData {
-    private int currentTemperature;
+public class DishwasherData {
     private int electricityConsumption;
     private int electricityPerHour;
     private int resourceHours;
@@ -15,13 +14,7 @@ public class HeaterData {
         this.targetTemperature = targetTemperature;
     }
 
-    public int getCurrentTemperature() {
-        return currentTemperature;
-    }
 
-    public void setCurrentTemperature(int currentTemperature) {
-        this.currentTemperature = currentTemperature;
-    }
 
     public int getElectricityConsumption() {
         return electricityConsumption;

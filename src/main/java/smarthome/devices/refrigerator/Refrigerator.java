@@ -44,7 +44,7 @@ public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEv
 
     @Override
     public String getDoc() {
-        return "holodos ne vkluchat";
+        return "Refrigerator";
     }
 
     @Override
@@ -54,6 +54,7 @@ public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEv
 
     @Override
     public void setData(RefrigeratorData data) {
+
         this.refrigeratorData = data;
     }
 
@@ -75,11 +76,15 @@ public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEv
         refrigeratorData.setTargetTemperature(target);
         if (target < this.getData().getCurrentTemperature()) {
             onMessage(Message.toDevice(RefrigeratorEvent.COOL,null));
-            System.out.println("Cooling to " + target + "C");
+            System.out.println(this + ": cooling to " + target + "\u00B0" +"C");
         } else {
             onMessage(Message.toDevice(RefrigeratorEvent.HEAT,null));
-            System.out.println("Heating to " + target + "C");
+            System.out.println(this + ": heating to " + target + "\u00B0" +"C");
         }
+    }
+    @Override
+    public boolean isVital(){
+        return true;
     }
 
     @Override
@@ -87,5 +92,10 @@ public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEv
         return "Refrigerator{" +
                 "id='" + id + '\'' +
                 '}';
+    }
+
+    @Override
+    public RefrigeratorEvent toEvent(String name) {
+        return RefrigeratorEvent.valueOf(name);
     }
 }

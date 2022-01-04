@@ -3,8 +3,10 @@ package smarthome.location;
 import smarthome.devices.Device;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Location {
     private String id = UUID.randomUUID().toString();
@@ -16,6 +18,11 @@ public class Location {
 
     public Location(String id) {
         this.id = id;
+    }
+
+    public Location(String id, Set<? extends Device> devices) {
+        this.id = id;
+        this.devices = devices;
     }
 
     public Set<? extends Device> getDevices() {
@@ -40,5 +47,9 @@ public class Location {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public <T extends Device<?>> List<T> getDevicesByType(Class<T> clazz) {
+        return getDevices().stream().filter(it->clazz.isAssignableFrom(it.getClass())).map(it->(T)it).collect(Collectors.toList());
     }
 }

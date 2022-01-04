@@ -12,8 +12,6 @@ public class Stove extends StateMachine<StoveState, StoveEvent> implements Devic
 
         addTransition(new Transition<>(StoveState.OFF, StoveState.ON, StoveEvent.TURN_ON));
         addTransition(new Transition<>(StoveState.ON, StoveState.OFF, StoveEvent.TURN_OFF));
-        addTransition(new Transition<>(StoveState.ON, StoveState.LOCK, StoveEvent.LOCK));
-        addTransition(new Transition<>(StoveState.LOCK, StoveState.ON, StoveEvent.UNLOCK));
 
     }
     private StoveData stoveData = new StoveData();
@@ -26,7 +24,7 @@ public class Stove extends StateMachine<StoveState, StoveEvent> implements Devic
     @Override
     public String getDoc(){
 
-        return "Doc!";
+        return "Stove!";
     }
 
     @Override
@@ -37,6 +35,11 @@ public class Stove extends StateMachine<StoveState, StoveEvent> implements Devic
     @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public StoveEvent toEvent(String name) {
+        return StoveEvent.valueOf(name);
     }
 
     @Override

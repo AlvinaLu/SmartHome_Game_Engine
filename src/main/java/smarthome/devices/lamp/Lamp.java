@@ -25,6 +25,11 @@ public class Lamp extends StateMachine<LampState, LampEvent> implements Device<L
     }
 
     @Override
+    public LampEvent toEvent(String name) {
+        return LampEvent.valueOf(name);
+    }
+
+    @Override
     public LampData getData() {
         return lampData;
     }
@@ -42,6 +47,11 @@ public class Lamp extends StateMachine<LampState, LampEvent> implements Device<L
     @Override
     public void setData(LampData data) {
         this.lampData = data;
+    }
+
+    @Override
+    public boolean isVital(){
+        return true;
     }
 
     @Override

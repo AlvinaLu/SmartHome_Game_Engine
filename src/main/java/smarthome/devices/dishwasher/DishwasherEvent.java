@@ -1,7 +1,7 @@
-package smarthome.devices.heater;
+package smarthome.devices.dishwasher;
 
 import smarthome.statemachine.SmEvent;
 
-public enum HeaterEvent implements SmEvent {
+public enum DishwasherEvent implements SmEvent {
     TURN_OFF, TURN_ON, ECO, INTENSIVE, GLASS, BROKEN
 }

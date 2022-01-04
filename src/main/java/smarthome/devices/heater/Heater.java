@@ -4,6 +4,7 @@ import smarthome.devices.Device;
 import smarthome.statemachine.StateMachine;
 import smarthome.statemachine.Transition;
 
+
 public class Heater extends StateMachine<HeaterState, HeaterEvent> implements Device<HeaterData> {
     private String id;
     private int targetTemperature = 0;
@@ -15,15 +16,23 @@ public class Heater extends StateMachine<HeaterState, HeaterEvent> implements De
         addTransition(new Transition<>(HeaterState.ON, HeaterState.OFF, HeaterEvent.TURN_OFF));
     }
 
+    @Override
+    public boolean isVital() {
+        return true;
+    }
 
     @Override
     protected void onEnter(HeaterState currentState) {
-
     }
 
     @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public HeaterEvent toEvent(String name) {
+        return HeaterEvent.valueOf(name);
     }
 
     @Override
@@ -46,4 +55,10 @@ public class Heater extends StateMachine<HeaterState, HeaterEvent> implements De
         heaterData = data;
     }
 
+    @Override
+    public String toString() {
+        return "Heater{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }

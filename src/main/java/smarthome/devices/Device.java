@@ -1,6 +1,7 @@
 package smarthome.devices;
 
 public interface Device<T> {
+
     String getId();
 
     T getData();
@@ -10,4 +11,8 @@ public interface Device<T> {
     void setId(String id);
 
     void setData(T data);
+
+    default boolean isVital() {
+        return false;
+    }
 }
