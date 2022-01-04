@@ -1,11 +1,13 @@
 package smarthome.devices.coffee_machine;
 
 import smarthome.devices.Device;
+import smarthome.servises.Scheduler;
 import smarthome.statemachine.StateMachine;
 import smarthome.statemachine.Transition;
 
 public class CoffeeMachine extends StateMachine<CoffeeMachineState, CoffeeMachineEvent> implements Device<CoffeeMachineData> {
 
+    private Scheduler scheduler =Scheduler.getInstance();
     private String id;
     private CoffeeMachineData coffeeMachineData = new CoffeeMachineData();
 
@@ -14,8 +16,8 @@ public class CoffeeMachine extends StateMachine<CoffeeMachineState, CoffeeMachin
         super(CoffeeMachineState.OFF);
         addTransition(new Transition<>(CoffeeMachineState.OFF, CoffeeMachineState.ON, CoffeeMachineEvent.TURN_ON));
         addTransition(new Transition<>(CoffeeMachineState.ON, CoffeeMachineState.OFF, CoffeeMachineEvent.TURN_OFF));
-        addTransition(new Transition<>(CoffeeMachineState.OFF, CoffeeMachineState.CHOOSE_TYPE_OF_COFFEE, CoffeeMachineEvent.TURN_ON));
-        addTransition(new Transition<>(CoffeeMachineState.ON, CoffeeMachineState.CHOOSE_TYPE_OF_COFFEE, CoffeeMachineEvent.CHOOSING_A_VARIETY_OF_COFFEE));
+        addTransition(new Transition<>(CoffeeMachineState.ON, CoffeeMachineState.POURS_COFFEE, CoffeeMachineEvent.POURS_COFFEE));
+        addTransition(new Transition<>(CoffeeMachineState.ON, CoffeeMachineState.POURS_COFFEE, CoffeeMachineEvent.POURS_COFFEE));
 
     }
 
@@ -39,4 +41,11 @@ public class CoffeeMachine extends StateMachine<CoffeeMachineState, CoffeeMachin
     @Override
     public void setData(CoffeeMachineData data) { this.coffeeMachineData = data; }
 
+
+    @Override
+    public String toString() {
+        return "CoffeeMachine{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }
