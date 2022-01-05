@@ -6,8 +6,7 @@ public class TVData {
     private int electricityConsumption;
     private int electricityPerHour;
     private int resourceHours;
-    private int targetVolume;
-    private int targetChannel;
+
 
     public int getCurrentVolume() {
         return currentVolume;
@@ -49,20 +48,5 @@ public class TVData {
         this.resourceHours = resourceHours;
     }
 
-    public int getTargetVolume() {
-        return targetVolume;
-    }
-
-    public void setTargetVolume(int targetVolume) {
-        this.targetVolume = targetVolume;
-    }
-
-    public int getTargetChannel() {
-        return targetChannel;
-    }
-
-    public void setTargetChannel(int targetChannel) {
-        this.targetChannel = targetChannel;
-    }
 
 }
