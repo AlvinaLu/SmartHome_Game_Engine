@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 
 public enum AudioStationState implements ConsumingState {
-    ON(Resource.ELECTRICITY, 1D), OFF(), TURN_UP(), TURN_DOWN(),  CHANGE_VOLUME(), PLAY(Resource.ELECTRICITY, 1D);
+    ON(Resource.ELECTRICITY, 1D), OFF(), TURN_UP(Resource.ELECTRICITY, 0.01D), TURN_DOWN(), PLAY(Resource.ELECTRICITY, 1D), PAUSE();
 
     AudioStationState() {
         this(Collections.emptyMap());
