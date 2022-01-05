@@ -5,7 +5,7 @@ public class CoffeeMachineData {
     private int electricityConsumption;
     private int electricityPerHour;
     private int resourceHours;
-    private Coffee coffee;
+    private String coffee;
 
     public int getElectricityConsumption() {
         return electricityConsumption;
@@ -31,11 +31,11 @@ public class CoffeeMachineData {
         this.resourceHours = resourceHours;
     }
 
-    public Coffee getCoffee() {
+    public String getCoffee() {
         return coffee;
     }
 
-    public void setCoffee(Coffee coffee) {
-        this.coffee = coffee;
+    public void setCoffee(String string) {
+        this.coffee = string;
     }
 }

@@ -2,7 +2,6 @@ package smarthome.sensors;
 
 import smarthome.devices.Device;
 
-import java.util.EventListener;
 import java.util.HashSet;
 import java.util.Set;
 

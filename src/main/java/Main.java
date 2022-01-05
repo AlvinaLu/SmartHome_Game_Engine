@@ -1,5 +1,8 @@
 import smarthome.Dispatcher;
 import smarthome.devices.DeviceFactory;
+import smarthome.devices.coffee_machine.Coffee;
+import smarthome.devices.coffee_machine.CoffeeMachine;
+import smarthome.devices.coffee_machine.CoffeeMachineEvent;
 import smarthome.devices.refrigerator.Refrigerator;
 import smarthome.devices.refrigerator.RefrigeratorEvent;
 import smarthome.devices.refrigerator.RefrigeratorEvent;
@@ -24,14 +27,15 @@ public class Main {
 
         Scheduler.getInstance().schedule(() -> DeviceLog.getInstance().report(), 100, TimeUnit.MINUTES);
 
-
+        LocationConfiguration.getInstance().setLOCATION("test.json");
         if (LocationConfiguration.getInstance().isFileExist()) {
             LocationConfiguration.getInstance().load();
         } else {
             Location house = new Location("House");
             Refrigerator refrigerator = df.createDevice(Refrigerator.class);
+            CoffeeMachine coffeeMachine = df.createDevice(CoffeeMachine.class);
             TemperatureSensor temperatureSensor = df.createDevice(TemperatureSensor.class);
-            house.setDevices(Set.of(refrigerator));
+            house.setDevices(Set.of(refrigerator, coffeeMachine, temperatureSensor));
             LocationConfiguration.getInstance().setLocation(house);
 
         }
@@ -43,7 +47,13 @@ public class Main {
 
 
         dispatcher.sendMessage(Message.toLocation(RefrigeratorEvent.TURN_ON, "House"));
-        dispatcher.sendMessage(Message.toDevice(RefrigeratorEvent.CHANGE_TEMPERATURE, "Refrigerator#1", Map.of("target", 4)));
+        dispatcher.sendMessage(Message.toDevice(RefrigeratorEvent.CHANGE_TEMPERATURE, "Refrigerator#1", Map.of("target", 22)));
+        dispatcher.sendMessage(Message.toDevice(CoffeeMachineEvent.TURN_ON, "CoffeeMachine#1"));
+        dispatcher.sendMessage(Message.toDevice(CoffeeMachineEvent.POURS_COFFEE, "CoffeeMachine#1", Map.of("coffee", "Americano")));
+        Scheduler.getInstance().schedule(() -> {
+            dispatcher.sendMessage(Message.toDevice(CoffeeMachineEvent.POURS_COFFEE, "CoffeeMachine#1", Map.of("coffee", "Latte")));
+        }, 7, TimeUnit.MINUTES);
+
 
 
     }

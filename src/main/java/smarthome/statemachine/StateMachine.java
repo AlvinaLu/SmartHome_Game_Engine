@@ -27,7 +27,7 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
                     .orElse(null);
 
             if (transition==null) {
-                //System.out.println(this+": transition not found from state "+currentState+" for event "+message.getEvent().getClass().getSimpleName()+"."+message.getEvent());
+                System.out.println(this+": transition not found from state "+currentState+" for event "+message.getEvent().getClass().getSimpleName()+"."+message.getEvent());
                 return;
             }
 

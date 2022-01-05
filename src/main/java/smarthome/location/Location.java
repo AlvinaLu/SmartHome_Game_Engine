@@ -1,6 +1,7 @@
 package smarthome.location;
 
 import smarthome.devices.Device;
+import smarthome.skinbag.Skinbag;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Location {
     private String id = UUID.randomUUID().toString();
     private Set<? extends Device> devices = new HashSet<>();
     private Set<? extends  Location> locations = new HashSet<>();
+    private Set<? extends Skinbag> skinbags = new HashSet<>();
 
     public Location() {
     }
@@ -23,6 +25,19 @@ public class Location {
     public Location(String id, Set<? extends Device> devices) {
         this.id = id;
         this.devices = devices;
+    }
+    public Location(String id, Set<? extends Device> devices, Set<? extends Skinbag> skinbags) {
+        this.id = id;
+        this.devices = devices;
+        this.skinbags = skinbags;
+    }
+
+    public Set<? extends Skinbag> getSkinbags() {
+        return skinbags;
+    }
+
+    public void setSkinbags(Set<? extends Skinbag> skinbags) {
+        this.skinbags = skinbags;
     }
 
     public Set<? extends Device> getDevices() {

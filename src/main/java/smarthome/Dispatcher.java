@@ -1,9 +1,9 @@
 package smarthome;
 
-import jdk.jfr.FlightRecorder;
 import smarthome.devices.Device;
 import smarthome.location.Location;
 import smarthome.sensors.Sensor;
+import smarthome.skinbag.Skinbag;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;
 
@@ -102,10 +102,6 @@ public class Dispatcher {
         } else {
             throw new IllegalStateException("Device is not a sensor");
         }
-    }
-
-    public Set<? extends Location> getLocations() {
-        return locations;
     }
 
     public Map<String, Location> getMapLocation() {

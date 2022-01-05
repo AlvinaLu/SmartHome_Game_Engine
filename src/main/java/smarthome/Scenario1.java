@@ -1,7 +1,7 @@
 package smarthome;
 
-import smarthome.devices.Device;
 import smarthome.devices.DeviceFactory;
+import smarthome.devices.coffee_machine.CoffeeMachine;
 import smarthome.devices.dishwasher.Dishwasher;
 import smarthome.devices.dishwasher.DishwasherEvent;
 import smarthome.devices.electricity_generator.Generator;
@@ -16,11 +16,13 @@ import smarthome.devices.washing_machine.WashingMachine;
 import smarthome.devices.washing_machine.WashingMachineEvent;
 import smarthome.location.Location;
 import smarthome.sensors.ElectricitySensor;
+import smarthome.sensors.HumanSensor;
 import smarthome.sensors.Sensor;
 import smarthome.sensors.TemperatureSensor;
 import smarthome.servises.DeviceLog;
 import smarthome.servises.LocationConfiguration;
 import smarthome.servises.Scheduler;
+import smarthome.skinbag.Skinbag;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;
 
@@ -40,20 +42,23 @@ public class Scenario1 {
         DeviceLog.getInstance().setPriceElectricity(0.05D);
         DeviceLog.getInstance().setPriceWater(0.01D);
         DeviceLog.getInstance().setPricePetrol(0.03D);
-
+        LocationConfiguration.getInstance().setLOCATION("location.json");
 //Configuratiion
         if (LocationConfiguration.getInstance().isFileExist()) {
             LocationConfiguration.getInstance().load();
         } else {
 
-            Location house_and_grounds = new Location("House and grounds", Set.of(df.createDevice(ElectricitySensor.class), df.createDevice(Generator.class)));
-            LocationConfiguration.getInstance().setLocation(house_and_grounds);
+            Location houseAndGrounds = new Location("House and grounds", Set.of(df.createDevice(ElectricitySensor.class), df.createDevice(Generator.class)));
+            LocationConfiguration.getInstance().setLocation(houseAndGrounds);
 
             Location greengrass = new Location("Greengrass");
             Location house = new Location("House");
-            house_and_grounds.setLocations(Set.of(greengrass, house));
+            houseAndGrounds.setLocations(Set.of(greengrass, house));
 
             Location floor1 = new Location("Floor#1");
+            Skinbag skinbag = new Skinbag("Dad", Set.of(
+                    RefrigeratorEvent.TURN_OFF, RefrigeratorEvent.TURN_ON, RefrigeratorEvent.CHANGE_TEMPERATURE,
+                    LampEvent.TURN_ON, LampEvent.TURN_OFF));
             floor1.setLocations(Set.of(
                     new Location("Kitchen", Set.of(
                             df.createDevice(Refrigerator.class),
@@ -65,10 +70,13 @@ public class Scenario1 {
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class),
-                            df.createDevice(Lamp.class)
-                    )),
+                            df.createDevice(Lamp.class),
+                            df.createDevice(CoffeeMachine.class),
+                            df.createDevice(HumanSensor.class)
+                    ), Set.of(skinbag)),
                     new Location("Family room", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class),
@@ -77,6 +85,7 @@ public class Scenario1 {
                     )),
                     new Location("Living room", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class),
@@ -84,6 +93,7 @@ public class Scenario1 {
                             df.createDevice(Lamp.class))),
                     new Location("Dinning room", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class),
@@ -91,6 +101,7 @@ public class Scenario1 {
                             df.createDevice(Lamp.class))),
                     new Location("Bath#1", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class)
@@ -100,36 +111,42 @@ public class Scenario1 {
             floor2.setLocations(Set.of(
                     new Location("Bath#2", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class))),
                     new Location("Bath#3", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class))),
                     new Location("Bedroom#1", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class))),
                     new Location("Bedroom#2", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class))),
                     new Location("Bedroom#3", Set.of(
                             df.createDevice(TemperatureSensor.class),
+                            df.createDevice(HumanSensor.class),
                             df.createDevice(Heater.class),
                             df.createDevice(Lamp.class),
                             df.createDevice(Lamp.class)))));
 
-            Location foyer_and_stairs = new Location("Foyer and stars");
+            Location foyerAndStars = new Location("Foyer and stars");
             Location garage = new Location("Garage");
-            house.setLocations(Set.of(foyer_and_stairs, garage, floor1, floor2));
+            house.setLocations(Set.of(foyerAndStars, garage, floor1, floor2));
 
 
         }
+
         Dispatcher dispatcher = Dispatcher.getInstance();
         dispatcher.init(Set.of(LocationConfiguration.getInstance().getLocation()));
 
@@ -155,6 +172,24 @@ public class Scenario1 {
             }
         }
 
+        // Person in room
+        for (Location location : dispatcher.getMapLocation().values()) {
+            for (Lamp lamp : location.getDevicesByType(Lamp.class)) {
+                List<HumanSensor> sensors = location.getDevicesByType(HumanSensor.class);
+                if (sensors.size() == 1) {
+                    Sensor sensor = sensors.get(0);
+                    sensor.addListener(value -> {
+                        if (value >= 0) {
+                            Dispatcher.getInstance().sendMessage(Message.toLocation(LampEvent.TURN_ON, location.getId()));
+                            System.out.println(lamp.getId() + " Lamp in " + location.getId() + " is on");
+                        } else {
+                            Dispatcher.getInstance().sendMessage(Message.toLocation(LampEvent.TURN_ON, location.getId()));
+                            System.out.println(lamp.getId() + " Light in " + location.getId() + " is off");
+                        }
+                    });
+                }
+            }
+        }
 
 
 //Scenario
@@ -174,10 +209,12 @@ public class Scenario1 {
         }
         // Lamps
         for (Location location : dispatcher.getMapLocation().values()) {
-            List<Lamp> devices = location.getDevicesByType(Lamp.class);
-            devices.forEach(it -> Scheduler.getInstance().schedule(() -> {
-                dispatcher.sendMessage(Message.toDevice(LampEvent.TURN_ON, it.getId()));
-            }, 30, TimeUnit.MINUTES));
+            if (!location.getSkinbags().isEmpty()) {
+                List<HumanSensor> sensors = location.getDevicesByType(HumanSensor.class);
+                if (sensors.size() == 1) {
+                        sensors.get(0).setValue((double) location.getSkinbags().size());
+                }
+            }
 
         }
 
@@ -195,12 +232,12 @@ public class Scenario1 {
                     if (value == 0) {
                         dispatcher.sendMessage(Message.toDevice(GeneratorEvent.TURN_ON, "Generator#1"));
                         dispatcher.getMapDevice().values().forEach(it -> {
-                            if (it instanceof StateMachine  && !it.isVital()) {
+                            if (it instanceof StateMachine && !it.isVital()) {
                                 dispatcher.sendMessage(Message.toDevice(((StateMachine<?, ?>) it).toEvent("TURN_OFF"), it.getId()));
                             }
                         });
 
-                    }else{
+                    } else {
                         dispatcher.sendMessage(Message.toDevice(GeneratorEvent.TURN_OFF, "Generator#1"));
                     }
                 });
@@ -220,7 +257,6 @@ public class Scenario1 {
         Scheduler.getInstance().schedule(() -> {
             DeviceLog.getInstance().report();
         }, 1200, TimeUnit.MINUTES);
-
 
 
     }
