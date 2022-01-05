@@ -4,8 +4,9 @@ import java.util.Date;
 
 public class KettleData {
     private int currentTemperature = 21;
+
     private int electricityConsumption; //потребление электроэнергии
-    private Date timer;
+    private int timer;
 
     public int getCurrentTemperature() {
         return currentTemperature;
@@ -23,12 +24,13 @@ public class KettleData {
         this.electricityConsumption = electricityConsumption;
     }
 
-    public Date getTimer() {
+    public int getTimer() {
         return timer;
     }
 
-    public void setTimer(Date timer) {
+    public void setTimer(int timer) {
         this.timer = timer;
     }
+
 
 }
