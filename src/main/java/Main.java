@@ -27,7 +27,6 @@ public class Main {
 
         Scheduler.getInstance().schedule(() -> DeviceLog.getInstance().report(), 100, TimeUnit.MINUTES);
 
-        LocationConfiguration.getInstance().setLOCATION("test.json");
         if (LocationConfiguration.getInstance().isFileExist()) {
             LocationConfiguration.getInstance().load();
         } else {
@@ -47,7 +46,7 @@ public class Main {
 
 
         dispatcher.sendMessage(Message.toLocation(RefrigeratorEvent.TURN_ON, "House"));
-        dispatcher.sendMessage(Message.toDevice(RefrigeratorEvent.CHANGE_TEMPERATURE, "Refrigerator#1", Map.of("target", 22)));
+        dispatcher.sendMessage(Message.toDevice(RefrigeratorEvent.CHANGE_TEMPERATURE, "Refrigerator#1", Map.of("target", 4)));
         dispatcher.sendMessage(Message.toDevice(CoffeeMachineEvent.TURN_ON, "CoffeeMachine#1"));
         dispatcher.sendMessage(Message.toDevice(CoffeeMachineEvent.POURS_COFFEE, "CoffeeMachine#1", Map.of("coffee", "Americano")));
         Scheduler.getInstance().schedule(() -> {

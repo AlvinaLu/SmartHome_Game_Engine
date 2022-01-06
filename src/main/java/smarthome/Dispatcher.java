@@ -7,10 +7,7 @@ import smarthome.skinbag.Skinbag;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Dispatcher {
     private static Dispatcher instance;
@@ -25,6 +22,7 @@ public class Dispatcher {
     private Set<? extends Location> locations = new HashSet<>();
     private Map<String, Location> mapLocation = new HashMap<>();
     private Map<String, Device> mapDevice = new HashMap<>();
+    private Set<Skinbag> skinbags = new HashSet<>();
 
 
     private Dispatcher() {
@@ -36,6 +34,13 @@ public class Dispatcher {
         for (Location loc : locations) {
             mapLocation.put(loc.getId(), loc);
             recurseLocation(loc);
+
+        }
+        for(Location loc : mapLocation.values()){
+            if (!loc.getSkinbags().isEmpty()) {
+                loc.getSkinbags().forEach(it -> it.setLocation(loc));
+                loc.getSkinbags().forEach(it -> skinbags.add(it));
+            }
         }
 
         for (Device device : mapDevice.values()) {
@@ -103,6 +108,10 @@ public class Dispatcher {
             throw new IllegalStateException("Device is not a sensor");
         }
     }
+    public Location getRandomLocation(){
+        Object[] locations = mapLocation.values().toArray();
+        return (Location) locations[new Random().nextInt(locations.length)];
+    }
 
     public Map<String, Location> getMapLocation() {
         return mapLocation;
@@ -110,5 +119,9 @@ public class Dispatcher {
 
     public Map<String, Device> getMapDevice() {
         return mapDevice;
+    }
+
+    public Set<Skinbag> getSkinbags() {
+        return skinbags;
     }
 }

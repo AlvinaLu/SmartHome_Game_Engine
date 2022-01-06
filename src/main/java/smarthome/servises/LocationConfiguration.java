@@ -15,7 +15,7 @@ import java.io.File;
 import java.util.Map;
 
 public class LocationConfiguration {
-    public String LOCATION = "location.json";
+    public static final String LOCATION = "location.json";
     private static LocationConfiguration instance;
 
     public static LocationConfiguration getInstance() {
@@ -51,7 +51,7 @@ public class LocationConfiguration {
         }
     }
 
-    public void save(){
+    public synchronized void save(){
         try {
             this.objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(LOCATION), location);
         }catch (Exception e){
@@ -67,7 +67,4 @@ public class LocationConfiguration {
         return new File(LOCATION).exists();
     }
 
-    public void setLOCATION(String LOCATION) {
-        this.LOCATION = LOCATION;
-    }
 }

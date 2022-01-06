@@ -28,9 +28,7 @@ import smarthome.statemachine.StateMachine;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Scenario1 {
@@ -38,24 +36,23 @@ public class Scenario1 {
 
 
         DeviceFactory df = DeviceFactory.getInstance();
-        Scheduler.getInstance().setTimeScale(10000);
+        Scheduler.getInstance().setTimeScale(100000);
         DeviceLog.getInstance().setPriceElectricity(0.05D);
         DeviceLog.getInstance().setPriceWater(0.01D);
         DeviceLog.getInstance().setPricePetrol(0.03D);
-        LocationConfiguration.getInstance().setLOCATION("location.json");
 //Configuratiion
         if (LocationConfiguration.getInstance().isFileExist()) {
             LocationConfiguration.getInstance().load();
         } else {
 
-            Location houseAndGrounds = new Location("House and grounds", Set.of(df.createDevice(ElectricitySensor.class), df.createDevice(Generator.class)));
+            Location houseAndGrounds = new Location("House and grounds", Set.of(df.createDevice(ElectricitySensor.class), df.createDevice(Generator.class)), false);
             LocationConfiguration.getInstance().setLocation(houseAndGrounds);
 
             Location greengrass = new Location("Greengrass");
-            Location house = new Location("House");
+            Location house = new Location("House", false);
             houseAndGrounds.setLocations(Set.of(greengrass, house));
 
-            Location floor1 = new Location("Floor#1");
+            Location floor1 = new Location("Floor#1", false);
             Skinbag skinbag = new Skinbag("Dad", Set.of(
                     RefrigeratorEvent.TURN_OFF, RefrigeratorEvent.TURN_ON, RefrigeratorEvent.CHANGE_TEMPERATURE,
                     LampEvent.TURN_ON, LampEvent.TURN_OFF));
@@ -73,7 +70,7 @@ public class Scenario1 {
                             df.createDevice(Lamp.class),
                             df.createDevice(CoffeeMachine.class),
                             df.createDevice(HumanSensor.class)
-                    ), Set.of(skinbag)),
+                    ), new HashSet<>(Set.of(skinbag))), // OR can be immutable
                     new Location("Family room", Set.of(
                             df.createDevice(TemperatureSensor.class),
                             df.createDevice(HumanSensor.class),
@@ -107,7 +104,7 @@ public class Scenario1 {
                             df.createDevice(Lamp.class)
                     ))));
 
-            Location floor2 = new Location("Floor#2");
+            Location floor2 = new Location("Floor#2", false);
             floor2.setLocations(Set.of(
                     new Location("Bath#2", Set.of(
                             df.createDevice(TemperatureSensor.class),
@@ -201,22 +198,33 @@ public class Scenario1 {
             List<TemperatureSensor> sensors = location.getDevicesByType(TemperatureSensor.class);
             if (sensors.size() == 1) {
                 Scheduler.getInstance().schedule(() -> {
-                    sensors.get(0).setValue(18 + Math.random() * 5);
+                    sensors.get(0).setValue(18 + Math.random() * 6);
                 }, 30, TimeUnit.MINUTES);
 
             }
 
         }
-        // Lamps
+        // Lamps is on if Human is in room
+
         for (Location location : dispatcher.getMapLocation().values()) {
             if (!location.getSkinbags().isEmpty()) {
                 List<HumanSensor> sensors = location.getDevicesByType(HumanSensor.class);
                 if (sensors.size() == 1) {
-                        sensors.get(0).setValue((double) location.getSkinbags().size());
+                    sensors.get(0).setValue((double) location.getSkinbags().size());
                 }
             }
 
         }
+        for (int i = 0; i < 10; i++) {
+            Scheduler.getInstance().schedule(() -> {
+                for (Skinbag skinbag : dispatcher.getSkinbags()) {
+                    skinbag.goToNewLocation();
+                    skinbag.doSomething();
+                }
+            }, 30*i, TimeUnit.MINUTES);
+        }
+
+
 
         dispatcher.sendMessage(Message.toLocation(DishwasherEvent.TURN_ON, "Kitchen"));
         dispatcher.sendMessage(Message.toLocation(DishwasherEvent.GLASS, "Kitchen"));
@@ -260,6 +268,11 @@ public class Scenario1 {
 
 
     }
+    static void TurnOnLamp(){
+
+    }
 
 }
+
+
 

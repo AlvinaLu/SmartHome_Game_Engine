@@ -1,20 +1,25 @@
 package smarthome.skinbag;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.jfr.Event;
 import smarthome.Dispatcher;
 import smarthome.devices.Device;
 import smarthome.location.Location;
+import smarthome.sensors.HumanSensor;
 import smarthome.sensors.Sensor;
+import smarthome.statemachine.Message;
 import smarthome.statemachine.SmEvent;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Skinbag {
     private String id;
     private Set<? extends SmEvent> permissions = new HashSet<>();
-    Location location;
-    Location prevLocation;
+    @JsonIgnore
+    private Location location;
+    @JsonIgnore
+    private Location prevLocation;
 
     public Skinbag() {
     }
@@ -59,6 +64,32 @@ public class Skinbag {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public void goToNewLocation(){
+        Location randomLocation = Dispatcher.getInstance().getRandomLocation();
+        if(randomLocation.isRoom()) {
+            List<HumanSensor> sensors = location.getDevicesByType(HumanSensor.class);
+            if (sensors.size() == 1) {
+                sensors.get(0).setValue(sensors.get(0).getData().getValue() - 1);
+            }
+            prevLocation = location;
+
+            this.location = randomLocation;
+            List<HumanSensor> sensorsNew = location.getDevicesByType(HumanSensor.class);
+            if (sensorsNew.size() == 1) {
+                sensorsNew.get(0).setValue(Optional.ofNullable(sensorsNew.get(0).getData().getValue()).orElse(1D) + 1);
+            }
+            System.out.println(id + " go from " + prevLocation.getId() + " to " + location.getId());
+        }
+    }
+
+    public void doSomething() {
+        Random generator = new Random();
+        List<? extends SmEvent> values = permissions.stream().collect(Collectors.toList());
+        SmEvent randomValue = values.get(generator.nextInt(values.size()));
+        Dispatcher.getInstance().sendMessage(Message.toLocation(randomValue, location.getId()));
+
     }
 }
 
