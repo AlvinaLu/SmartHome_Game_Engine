@@ -26,6 +26,9 @@ public class AudioStation extends StateMachine<AudioStationState, AudioStationEv
         addTransition(new Transition<>(AudioStationState.ON, AudioStationState.TURN_UP, AudioStationEvent.TURN_UP));
         addTransition(new Transition<>(AudioStationState.ON, AudioStationState.TURN_DOWN, AudioStationEvent.TURN_DOWN));
 
+        addTransition(new Transition<>(AudioStationState.TURN_UP, AudioStationState.ON, AudioStationEvent.TURN_ON));
+        addTransition(new Transition<>(AudioStationState.TURN_DOWN, AudioStationState.ON, AudioStationEvent.TURN_ON));
+
         addTransition(new Transition<>(AudioStationState.ON, AudioStationState.PLAY, AudioStationEvent.PLAY));
         addTransition(new Transition<>(AudioStationState.PLAY, AudioStationState.PAUSE, AudioStationEvent.PAUSE));
         addTransition(new Transition<>(AudioStationState.PLAY, AudioStationState.ON, AudioStationEvent.TURN_ON));
@@ -59,9 +62,11 @@ public class AudioStation extends StateMachine<AudioStationState, AudioStationEv
         } else if(currentState.equals(AudioStationState.TURN_DOWN)){
             int volume = (int) getMessageData().get("volume");
             this.audioStationData.setCurrentVolume(this.getData().getCurrentVolume() - volume);
+            Dispatcher.getInstance().sendMessage(Message.toDevice(AudioStationEvent.TURN_ON, id));
         }else if(currentState.equals(AudioStationState.TURN_UP)){
             int volume = (int) getMessageData().get("volume");
             this.audioStationData.setCurrentVolume(this.getData().getCurrentVolume() + volume);
+            Dispatcher.getInstance().sendMessage(Message.toDevice(AudioStationEvent.TURN_ON, id));
         }
 
     }
