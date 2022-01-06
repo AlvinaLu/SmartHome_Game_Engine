@@ -2,11 +2,12 @@ package smarthome.devices.audio_station;
 
 public class AudioStationData {
 
-    private int currentVolume = 20;
+    private int currentVolume = 10;
     private int electricityConsumption;
     private int electricityPerHour;
     private int resourceHours;
-    private int targetVolume;
+    private Audios audio;
+
 
     public int getCurrentVolume() {
         return currentVolume;
@@ -40,13 +41,14 @@ public class AudioStationData {
         this.resourceHours = resourceHours;
     }
 
-    public int getTargetVolume() {
-        return targetVolume;
+    public Audios getAudio() {
+        return audio;
     }
 
-    public void setTargetVolume(int targetVolume) {
-        this.targetVolume = targetVolume;
+    public void setAudio(Audios audio) {
+        this.audio = audio;
     }
+
 
 
 }
