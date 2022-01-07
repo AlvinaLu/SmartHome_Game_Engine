@@ -47,13 +47,14 @@ public class AirConditioner extends StateMachine<AirConditionerState, AirConditi
                 System.out.println(this + ": heating to " + target + "\u00B0" +"C");
             }
         }
-//        else if (currentState.equals(AirConditionerState.COOLING) || currentState.equals(AirConditionerState.HEATING)) {
-//            int changeTemp = Math.abs(this.getData().getTargetTemperature() - this.getData().getCurrentTemperature());
-//            setCurrentTask(scheduler.schedule(() -> {
-//                this.airConditionerData.setCurrentTemperature(this.getData().getCurrentTemperature());
-//                Dispatcher.getInstance().sendMessage(Message.toDevice(AirConditionerEvent.TURN_ON,id));
-//            }, 1*changeTemp, TimeUnit.HOURS));
-//        }
+        else if (currentState.equals(AirConditionerState.COOLING) || currentState.equals(AirConditionerState.HEATING)) {
+            int changeTemp = Math.abs(this.getData().getTargetTemperature() - this.getData().getCurrentTemperature());
+            setCurrentTask(scheduler.schedule(() -> {
+                this.airConditionerData.setCurrentTemperature(this.getData().getCurrentTemperature());
+                Dispatcher.getInstance().sendMessage(Message.toDevice(AirConditionerEvent.TURN_ON,id));
+            }, 1*changeTemp, TimeUnit.HOURS));
+        }
+
     }
 
     private void changeTemperature(int target) {

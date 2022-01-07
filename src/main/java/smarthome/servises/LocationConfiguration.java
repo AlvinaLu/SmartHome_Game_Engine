@@ -1,7 +1,9 @@
 package smarthome.servises;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.InjectableValues;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import smarthome.devices.Device;
 import smarthome.location.Location;
@@ -36,6 +38,7 @@ public class LocationConfiguration {
         simpleModule.addDeserializer(SmEvent.class, new SmEventDeserializer());
         objectMapper.registerModule(simpleModule);
         objectMapper.setInjectableValues(new InjectableValues.Std(Map.of("mapper", objectMapper)));
+        objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
     }
 

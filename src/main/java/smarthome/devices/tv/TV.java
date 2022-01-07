@@ -35,7 +35,6 @@ public class TV extends StateMachine<TVState, TVEvent> implements Device<TVData>
 
     @Override
     protected void onEnter(TVState currentState) {
-
         if(currentState.equals(TVState.TURN_DOWN)){
             int volume = (int) getMessageData().get("volume");
             this.tvData.setCurrentVolume(this.getData().getCurrentVolume() - volume);
@@ -80,5 +79,12 @@ public class TV extends StateMachine<TVState, TVEvent> implements Device<TVData>
     @Override
     public void setData(TVData data) {
         this.tvData = data;
+    }
+
+    @Override
+    public String toString() {
+        return "TV{" +
+                "id='" + id + '\'' +
+                '}';
     }
 }

@@ -45,28 +45,33 @@ public class AudioStation extends StateMachine<AudioStationState, AudioStationEv
     protected void onEnter(AudioStationState currentState) {
 
         if (currentState.equals(AudioStationState.PLAY)){
+            if(getMessageData().containsKey("audio")) {
+                String audio = (String) getMessageData().get("audio");
 
-            String audio = (String) getMessageData().get("audio");
+                for (Audios a : Audios.values()) {
+                    if (audio.equals(a.name())) {
+                        System.out.println("Playing " + audio);
+                        this.audioStationData.setAudio(a);
 
-            for (Audios a: Audios.values()){
-                if (audio.equals(a.name())) {
-                    System.out.println("Playing " + audio);
-                    this.audioStationData.setAudio(a);
-
-                    setCurrentTask(scheduler.schedule(() -> {
-                        Dispatcher.getInstance().sendMessage(Message.toDevice(AudioStationEvent.TURN_ON, id));
-                    }, 3, TimeUnit.MINUTES));
+                        setCurrentTask(scheduler.schedule(() -> {
+                            Dispatcher.getInstance().sendMessage(Message.toDevice(AudioStationEvent.TURN_ON, id));
+                        }, 3, TimeUnit.MINUTES));
+                    }
                 }
             }
 
         } else if(currentState.equals(AudioStationState.TURN_DOWN)){
-            int volume = (int) getMessageData().get("volume");
-            this.audioStationData.setCurrentVolume(this.getData().getCurrentVolume() - volume);
-            Dispatcher.getInstance().sendMessage(Message.toDevice(AudioStationEvent.TURN_ON, id));
+            if(getMessageData().containsKey("volume")) {
+                int volume = (int) getMessageData().get("volume");
+                this.audioStationData.setCurrentVolume(this.getData().getCurrentVolume() - volume);
+                Dispatcher.getInstance().sendMessage(Message.toDevice(AudioStationEvent.TURN_ON, id));
+            }
         }else if(currentState.equals(AudioStationState.TURN_UP)){
-            int volume = (int) getMessageData().get("volume");
-            this.audioStationData.setCurrentVolume(this.getData().getCurrentVolume() + volume);
-            Dispatcher.getInstance().sendMessage(Message.toDevice(AudioStationEvent.TURN_ON, id));
+            if(getMessageData().containsKey("volume")) {
+                int volume = (int) getMessageData().get("volume");
+                this.audioStationData.setCurrentVolume(this.getData().getCurrentVolume() + volume);
+                Dispatcher.getInstance().sendMessage(Message.toDevice(AudioStationEvent.TURN_ON, id));
+            }
         }
 
     }
@@ -99,5 +104,12 @@ public class AudioStation extends StateMachine<AudioStationState, AudioStationEv
     @Override
     public void setData(AudioStationData data) {
         this.audioStationData = data;
+    }
+
+    @Override
+    public String toString() {
+        return "AudioStation{" +
+                "id='" + id + '\'' +
+                '}';
     }
 }

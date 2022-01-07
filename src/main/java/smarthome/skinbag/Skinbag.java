@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.jfr.Event;
 import smarthome.Dispatcher;
 import smarthome.devices.Device;
+import smarthome.devices.refrigerator.RefrigeratorEvent;
 import smarthome.location.Location;
 import smarthome.sensors.HumanSensor;
 import smarthome.sensors.Sensor;
@@ -66,13 +67,14 @@ public class Skinbag {
         this.location = location;
     }
 
-    public void goToNewLocation(){
+    public void goToNewLocation() {
         Location randomLocation = Dispatcher.getInstance().getRandomLocation();
-        if(randomLocation.isRoom()) {
+        if (randomLocation.isRoom() && !randomLocation.equals(location)) {
             List<HumanSensor> sensors = location.getDevicesByType(HumanSensor.class);
             if (sensors.size() == 1) {
-                sensors.get(0).setValue(sensors.get(0).getData().getValue() - 1);
+                sensors.get(0).setValue(Optional.ofNullable(sensors.get(0).getData().getValue()).orElse(0D) - 1);
             }
+
             prevLocation = location;
 
             this.location = randomLocation;
@@ -84,11 +86,29 @@ public class Skinbag {
         }
     }
 
+    public void goToNewLocation(Location newLocation) {
+        List<HumanSensor> sensors = location.getDevicesByType(HumanSensor.class);
+        if (sensors.size() == 1) {
+            sensors.get(0).setValue(Optional.ofNullable(sensors.get(0).getData().getValue()).orElse(0D) - 1);
+        }
+        prevLocation = location;
+
+        this.location = newLocation;
+        List<HumanSensor> sensorsNew = location.getDevicesByType(HumanSensor.class);
+        if (sensorsNew.size() == 1) {
+            sensorsNew.get(0).setValue(Optional.ofNullable(sensorsNew.get(0).getData().getValue()).orElse(1D) + 1);
+        }
+        System.out.println(id + " go from " + prevLocation.getId() + " to " + location.getId());
+    }
+
     public void doSomething() {
         Random generator = new Random();
         List<? extends SmEvent> values = permissions.stream().collect(Collectors.toList());
-        SmEvent randomValue = values.get(generator.nextInt(values.size()));
-        Dispatcher.getInstance().sendMessage(Message.toLocation(randomValue, location.getId()));
+        if (values.size() > 0) {
+            SmEvent randomValue = values.get(generator.nextInt(values.size()));
+            Dispatcher.getInstance().sendMessage(Message.toLocation(randomValue, location.getId()));
+        }
+
 
     }
 }

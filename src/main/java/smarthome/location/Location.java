@@ -43,6 +43,7 @@ public class Location {
         this.isRoom = isRoom;
     }
 
+
     public Set<Skinbag> getSkinbags() {
         return skinbags;
     }

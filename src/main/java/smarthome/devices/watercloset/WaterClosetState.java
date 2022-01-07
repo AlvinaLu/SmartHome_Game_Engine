@@ -1,4 +1,4 @@
-package smarthome.devices.refrigerator;
+package smarthome.devices.watercloset;
 
 import smarthome.devices.ConsumingState;
 import smarthome.devices.Resource;
@@ -6,19 +6,20 @@ import smarthome.devices.Resource;
 import java.util.Collections;
 import java.util.Map;
 
-public enum RefrigeratorState implements ConsumingState {
-    ON(Resource.ELECTRICITY, 3D), OFF(), COOLING(Resource.ELECTRICITY, 5D), HEATING(Resource.ELECTRICITY, 0.1D), UNFREEZE(), CHANGE_TEMPERATURE(), BROKEN;
+public enum WaterClosetState implements ConsumingState {
+    ON(Resource.WATER, 3D),
+    OFF();
 
-    RefrigeratorState() {
+    WaterClosetState() {
         this(Collections.emptyMap());
     }
 
-    RefrigeratorState(Resource resource, Double amount) {
+    WaterClosetState(Resource resource, Double amount) {
         this(Map.of(resource, amount));
     }
 
 
-    RefrigeratorState(Map<Resource, Double> consumption) {
+    WaterClosetState(Map<Resource, Double> consumption) {
         this.consumption = consumption;
     }
 
@@ -29,4 +30,3 @@ public enum RefrigeratorState implements ConsumingState {
         return consumption;
     }
 }
-

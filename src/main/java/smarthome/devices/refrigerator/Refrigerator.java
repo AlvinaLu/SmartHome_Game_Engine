@@ -26,6 +26,16 @@ public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEv
         addTransition(new Transition<>(RefrigeratorState.CHANGE_TEMPERATURE, RefrigeratorState.HEATING, RefrigeratorEvent.HEAT));
         addTransition(new Transition<>(RefrigeratorState.COOLING, RefrigeratorState.ON, RefrigeratorEvent.TURN_ON));
         addTransition(new Transition<>(RefrigeratorState.HEATING, RefrigeratorState.ON, RefrigeratorEvent.TURN_ON));
+        addTransition(new Transition<>(RefrigeratorState.HEATING, RefrigeratorState.BROKEN, RefrigeratorEvent.BROKEN));
+        addTransition(new Transition<>(RefrigeratorState.ON, RefrigeratorState.BROKEN, RefrigeratorEvent.BROKEN));
+        addTransition(new Transition<>(RefrigeratorState.COOLING, RefrigeratorState.BROKEN, RefrigeratorEvent.BROKEN));
+        addTransition(new Transition<>(RefrigeratorState.HEATING, RefrigeratorState.BROKEN, RefrigeratorEvent.BROKEN));
+        addTransition(new Transition<>(RefrigeratorState.UNFREEZE, RefrigeratorState.BROKEN, RefrigeratorEvent.BROKEN));
+        addTransition(new Transition<>(RefrigeratorState.HEATING, RefrigeratorState.OFF, RefrigeratorEvent.TURN_OFF));
+        addTransition(new Transition<>(RefrigeratorState.ON, RefrigeratorState.OFF, RefrigeratorEvent.TURN_OFF));
+        addTransition(new Transition<>(RefrigeratorState.COOLING, RefrigeratorState.OFF, RefrigeratorEvent.TURN_OFF));
+        addTransition(new Transition<>(RefrigeratorState.HEATING, RefrigeratorState.OFF, RefrigeratorEvent.TURN_OFF));
+        addTransition(new Transition<>(RefrigeratorState.UNFREEZE, RefrigeratorState.OFF, RefrigeratorEvent.TURN_OFF));
     }
 
     @Override
@@ -60,7 +70,7 @@ public class Refrigerator extends StateMachine<RefrigeratorState, RefrigeratorEv
 
     @Override
     protected void onEnter(RefrigeratorState currentState) {
-        if (currentState.equals(RefrigeratorState.CHANGE_TEMPERATURE)) {
+        if (currentState.equals(RefrigeratorState.CHANGE_TEMPERATURE) && getMessageData().containsKey("target")) {
             int target = (Integer) getMessageData().get("target");
             changeTemperature(target);
         } else if (currentState.equals(RefrigeratorState.COOLING) || currentState.equals(RefrigeratorState.HEATING)) {
