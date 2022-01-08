@@ -24,11 +24,11 @@ public class AirConditioner extends StateMachine<AirConditionerState, AirConditi
         addTransition(new Transition<>(AirConditionerState.HEATING, AirConditionerState.OFF, AirConditionerEvent.TURN_OFF));
         addTransition(new Transition<>(AirConditionerState.CHANGE_TEMPERATURE, AirConditionerState.COOLING, AirConditionerEvent.COOL));
         addTransition(new Transition<>(AirConditionerState.CHANGE_TEMPERATURE, AirConditionerState.HEATING, AirConditionerEvent.HEAT));
-        addTransition(new Transition<>(AirConditionerState.ON, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
-        addTransition(new Transition<>(AirConditionerState.COOLING, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
-        addTransition(new Transition<>(AirConditionerState.HEATING, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
-        addTransition(new Transition<>(AirConditionerState.QUIET_MODE, AirConditionerState.OFF, AirConditionerEvent.TURN_OFF));
-        addTransition(new Transition<>(AirConditionerState.QUIET_MODE, AirConditionerState.ON, AirConditionerEvent.TURN_ON));
+//        addTransition(new Transition<>(AirConditionerState.ON, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
+//        addTransition(new Transition<>(AirConditionerState.COOLING, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
+//        addTransition(new Transition<>(AirConditionerState.HEATING, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
+//        addTransition(new Transition<>(AirConditionerState.QUIET_MODE, AirConditionerState.OFF, AirConditionerEvent.TURN_OFF));
+//        addTransition(new Transition<>(AirConditionerState.QUIET_MODE, AirConditionerState.ON, AirConditionerEvent.TURN_ON));
 
 
     }
@@ -37,9 +37,9 @@ public class AirConditioner extends StateMachine<AirConditionerState, AirConditi
     protected void onEnter(AirConditionerState currentState) {
         if (currentState.equals(AirConditionerState.CHANGE_TEMPERATURE)) {
             int target = (Integer) getMessageData().get("target");
-            this.airConditionerData.setTargetTemperature(target);
+            this.airConditionerData.setCurrentTemperature(target);
 
-            if (target < this.getData().getCurrentTemperature()) {
+            if (target == 16) {
                 onMessage(Message.toDevice(AirConditionerEvent.COOL,null));
                 System.out.println(this + ": cooling to " + target + "\u00B0" +"C");
             } else {
@@ -47,26 +47,7 @@ public class AirConditioner extends StateMachine<AirConditionerState, AirConditi
                 System.out.println(this + ": heating to " + target + "\u00B0" +"C");
             }
         }
-        else if (currentState.equals(AirConditionerState.COOLING) || currentState.equals(AirConditionerState.HEATING)) {
-            int changeTemp = Math.abs(this.getData().getTargetTemperature() - this.getData().getCurrentTemperature());
-            setCurrentTask(scheduler.schedule(() -> {
-                this.airConditionerData.setCurrentTemperature(this.getData().getCurrentTemperature());
-                Dispatcher.getInstance().sendMessage(Message.toDevice(AirConditionerEvent.TURN_ON,id));
-            }, 1*changeTemp, TimeUnit.HOURS));
-        }
 
-    }
-
-    private void changeTemperature(int target) {
-        this.airConditionerData.setTargetTemperature(target);
-
-        if (target < this.getData().getCurrentTemperature()) {
-            onMessage(Message.toDevice(AirConditionerEvent.COOL,null));
-            System.out.println(this + ": cooling to " + target + "\u00B0" +"C");
-        } else {
-            onMessage(Message.toDevice(AirConditionerEvent.HEAT,null));
-            System.out.println(this + ": heating to " + target + "\u00B0" +"C");
-        }
     }
 
     @Override
