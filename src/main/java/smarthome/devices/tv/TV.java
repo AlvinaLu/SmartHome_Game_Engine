@@ -46,6 +46,7 @@ public class TV extends StateMachine<TVState, TVEvent> implements Device<TVData>
         }else if(currentState.equals(TVState.CHANGE_CHANNEL)){
             int channel = (int) getMessageData().get("channel");
             this.tvData.setCurrentСhannel(channel);
+            System.out.println("TV on " + channel + "channel.");
             Dispatcher.getInstance().sendMessage(Message.toDevice(TVEvent.TURN_ON, id));
         }
 
