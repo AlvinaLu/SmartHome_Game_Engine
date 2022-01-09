@@ -240,7 +240,6 @@ public class Scenario1 {
 
         // Person in room
         for (Location location : dispatcher.getMapLocation().values()) {
-            for (Lamp lamp : location.getDevicesByType(Lamp.class)) {
                 List<HumanSensor> sensors = location.getDevicesByType(HumanSensor.class);
                 if (sensors.size() == 1) {
                     Sensor sensor = sensors.get(0);
@@ -252,7 +251,6 @@ public class Scenario1 {
                         }
                     });
                 }
-            }
         }
         // Fire
         for (Location location : dispatcher.getMapLocation().values()) {
