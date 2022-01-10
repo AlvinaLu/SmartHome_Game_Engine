@@ -13,16 +13,39 @@
   - Factory
   - Singleton
   - Listener
-- Zarižení domu jsou rozděleno do zarizení, spotřebiče a sensoriu
-  - Sensory lide v místnosti zapíná světla
-  - Sensor na vlhkost
-  - Jistič (výpadek elektřiny) provokuje zapnuti generátory elektřiny a vypnutí všech nedůležitých spotřebičů
-  - Fire sensor
-  - Temperaturní sensor zapne a vypne přímotopy nebo airconditioner
 
+F1
+- Entity se kterými pracujeme je dům, garáž, patro v domu, každá lokace muže mít vice lokace a několik devices
+- Sensory lide v místnosti zapíná světla, sensor na vlhkost, jistič (výpadek elektřiny) provokuje zapnuti generátory elektřiny a vypnutí všech nedůležitých spotřebičů, fire sensor, temperaturní sensor zapne a vypne přímotopy nebo airconditioner
+- Spotřebiče audio, coffe machine, dishwasher, generator electriny, heate, keetle, lamp, oven, refrigerator, stove, TV, washing machine, watercloset, waterconcumer.
+- Vše lide a domácí zvíře reprezentovaný jednou třídou skinbag, osoby májí dovolení používat jednotlivá zařízení
+- Nemáme sportovní zarizení
+
+F2
+- Zařízení mají stav, který lze měnit pomocí API na jeho ovládání
+- Akce z API jsou použitelné podle stavu zařízení
+- Jednotlivá zařízení mohou měnit svůj stav samostatné
+
+F3
 - Spotřebiče mají svojí spotřebu elektřiny, vody a paliva v aktivním stavu, nebo stavu různých program, které odehrává
+
+F4
+- State implements ConsumingState pomoci kterého sbíráme data jako spotřeba elektřiny, benzin, vody
+
+F5
+- Jednotlivé osoby a zvířata mohou provádět aktivity(akce), které mají nějaký efekt na zařízení.
+
+F6
+- Jednotlivá zařízení a osoby se v každém okamžiku vyskytují v jedné místnosti  a náhodně generují eventy. Eventy můžou posílat ne jenom jednotlivým zařízení  ale i ve cele lokaci, např vypnut_svetlo
+
+F7
+- Osoby májí dovolení používat jednotlivá zařízení. Sensory ma nekolik Listener na které podepsaný zarizení a automatické provadí akce když něco se stane.
+
+F8
 - Consuming report generuje informace Kolik jednotlivé spotřebiče spotřebovaly elektřiny, benzíny, vody. A generuje finanční report.
 
-- Aplikace běží s určitým zrychlením, které se dá nastavit
-- Osoby májí dovolení používat jednotlivá zařízení
-- Jednotlivá zařízení mohou měnit svůj stav podle programy
+F9
+- Realizováno jednoduché všechno opravuje jeden skinbag když vide že stav BROKEN, a trvá to 50 minut.
+
+F10
+- Rodina je passivní a volný čas tráví doma (COVID_19!!! STAY HOME!!!)
