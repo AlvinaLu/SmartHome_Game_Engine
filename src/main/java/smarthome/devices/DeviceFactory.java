@@ -2,10 +2,16 @@ package smarthome.devices;
 
 import smarthome.servises.IdGenerator;
 
-import java.lang.reflect.InvocationTargetException;
+/**
+ * Devise factory makes devices with unique ID
+ */
 
 public class DeviceFactory {
     private static DeviceFactory instance;
+
+    /**
+     * Return instance of factory
+     */
 
     public static DeviceFactory getInstance() {
         if (instance == null) {
@@ -14,6 +20,11 @@ public class DeviceFactory {
         return instance;
     }
 
+    /**
+     * Devise factory makes devices with unique ID
+     * @param tClass required device class
+     * @return device with unique ID
+     */
     public <T extends Device<?>> T createDevice(Class<T> tClass){
         try {
             T device = tClass.getDeclaredConstructor().newInstance();

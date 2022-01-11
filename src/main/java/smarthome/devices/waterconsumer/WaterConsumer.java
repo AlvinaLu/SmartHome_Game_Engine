@@ -1,9 +1,6 @@
 package smarthome.devices.waterconsumer;
 
 import smarthome.devices.Device;
-import smarthome.devices.washing_machine.WashingMachineData;
-import smarthome.devices.washing_machine.WashingMachineEvent;
-import smarthome.devices.washing_machine.WashingMachineState;
 import smarthome.servises.Scheduler;
 import smarthome.statemachine.StateMachine;
 import smarthome.statemachine.Transition;

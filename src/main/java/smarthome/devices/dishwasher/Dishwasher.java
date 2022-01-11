@@ -2,9 +2,6 @@ package smarthome.devices.dishwasher;
 
 import smarthome.Dispatcher;
 import smarthome.devices.Device;
-import smarthome.devices.refrigerator.RefrigeratorEvent;
-import smarthome.devices.stove.StoveEvent;
-import smarthome.devices.stove.StoveState;
 import smarthome.servises.Scheduler;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;

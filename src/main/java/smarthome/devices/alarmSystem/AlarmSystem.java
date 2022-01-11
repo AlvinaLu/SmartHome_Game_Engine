@@ -2,10 +2,6 @@ package smarthome.devices.alarmSystem;
 
 import smarthome.Dispatcher;
 import smarthome.devices.Device;
-import smarthome.devices.air_conditioner.AirConditionerData;
-import smarthome.devices.air_conditioner.AirConditionerEvent;
-import smarthome.devices.air_conditioner.AirConditionerState;
-import smarthome.devices.refrigerator.RefrigeratorState;
 import smarthome.servises.Scheduler;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;
@@ -34,7 +30,7 @@ public class AlarmSystem extends StateMachine<AlarmSystemState, AlarmSystemEvent
         if (currentState.equals(AlarmSystemState.ALARM)) {
             if (getMessageData().containsKey("fire")) {
                 boolean fire = (boolean) getMessageData().get("fire");
-                if (fire == true) {
+                if (fire) {
                     System.out.println("ALARM  !!! ALARM !!!  FIRE !!! ALARM  !!! ALARM !!!  FIRE !!!");
                     setCurrentTask(scheduler.schedule(() -> {
                     Dispatcher.getInstance().sendMessage(Message.toDevice(AlarmSystemEvent.TURN_ON,id));
@@ -44,7 +40,7 @@ public class AlarmSystem extends StateMachine<AlarmSystemState, AlarmSystemEvent
             if (getMessageData().containsKey("water") && getMessageData().containsKey("waterLocation")) {
                 boolean water = (boolean) getMessageData().get("water");
                 String waterLocation = (String) getMessageData().get("waterLocation");
-                if (water == true) {
+                if (water) {
                     System.out.println("ALARM  !!! ALARM !!!  WATER !!! in " + waterLocation);
                     setCurrentTask(scheduler.schedule(() -> {
                         Dispatcher.getInstance().sendMessage(Message.toDevice(AlarmSystemEvent.TURN_ON,id));

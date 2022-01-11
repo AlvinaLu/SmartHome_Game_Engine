@@ -1,7 +1,5 @@
 package smarthome.devices.kettle;
 
-import java.util.Date;
-
 public class KettleData {
     private int currentTemperature = 21;
 

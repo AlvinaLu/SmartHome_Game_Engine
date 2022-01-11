@@ -1,17 +1,12 @@
 package smarthome.devices.air_conditioner;
 
-import smarthome.Dispatcher;
 import smarthome.devices.Device;
-import smarthome.servises.Scheduler;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;
 import smarthome.statemachine.Transition;
 
-import java.util.concurrent.TimeUnit;
-
 public class AirConditioner extends StateMachine<AirConditionerState, AirConditionerEvent> implements Device<AirConditionerData> {
 
-    private Scheduler scheduler =Scheduler.getInstance();
     private String id;
     private AirConditionerData airConditionerData = new AirConditionerData();
 
@@ -24,12 +19,6 @@ public class AirConditioner extends StateMachine<AirConditionerState, AirConditi
         addTransition(new Transition<>(AirConditionerState.HEATING, AirConditionerState.OFF, AirConditionerEvent.TURN_OFF));
         addTransition(new Transition<>(AirConditionerState.CHANGE_TEMPERATURE, AirConditionerState.COOLING, AirConditionerEvent.COOL));
         addTransition(new Transition<>(AirConditionerState.CHANGE_TEMPERATURE, AirConditionerState.HEATING, AirConditionerEvent.HEAT));
-//        addTransition(new Transition<>(AirConditionerState.ON, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
-//        addTransition(new Transition<>(AirConditionerState.COOLING, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
-//        addTransition(new Transition<>(AirConditionerState.HEATING, AirConditionerState.QUIET_MODE, AirConditionerEvent.QUIET_MODE));
-//        addTransition(new Transition<>(AirConditionerState.QUIET_MODE, AirConditionerState.OFF, AirConditionerEvent.TURN_OFF));
-//        addTransition(new Transition<>(AirConditionerState.QUIET_MODE, AirConditionerState.ON, AirConditionerEvent.TURN_ON));
-
 
     }
 

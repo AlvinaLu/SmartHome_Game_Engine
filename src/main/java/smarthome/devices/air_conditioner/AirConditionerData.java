@@ -6,7 +6,6 @@ public class AirConditionerData {
     private int electricityConsumption;
     private int electricityPerHour;
     private int resourceHours;
-//    private int targetTemperature;
 
     public int getCurrentTemperature() {
         return currentTemperature;
@@ -40,12 +39,5 @@ public class AirConditionerData {
         this.resourceHours = resourceHours;
     }
 
-//    public int getTargetTemperature() {
-//        return targetTemperature;
-//    }
-//
-//    public void setTargetTemperature(int targetTemperature) {
-//        this.targetTemperature = targetTemperature;
-//    }
 
 }

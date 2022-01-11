@@ -2,11 +2,15 @@ package smarthome.servises;
 
 import java.util.Set;
 import java.util.concurrent.*;
-
+/**
+ * Schedules tasks taking timescale into account
+ */
 public class Scheduler {
     private static ScheduledExecutorService sysScheduler = Executors.newScheduledThreadPool(100);
     private static Scheduler instance;
-
+    /**
+     * Get instance
+     */
     public static Scheduler getInstance() {
         if (instance == null) {
             instance = new Scheduler();
@@ -41,7 +45,10 @@ public class Scheduler {
     public long getTimeScale() {
         return timeScale;
     }
-
+    /**
+     * Schedules command with delay
+     * @param command, delay, timeunit
+     */
     public ScheduledFuture<?> schedule(Runnable command,
                                        long delay, TimeUnit unit) {
 

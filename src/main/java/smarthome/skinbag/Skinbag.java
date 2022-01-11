@@ -1,19 +1,17 @@
 package smarthome.skinbag;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.jfr.Event;
 import smarthome.Dispatcher;
-import smarthome.devices.Device;
-import smarthome.devices.refrigerator.RefrigeratorEvent;
 import smarthome.location.Location;
 import smarthome.sensors.HumanSensor;
-import smarthome.sensors.Sensor;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.SmEvent;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+/**
+ * Class for alive objects
+ */
 public class Skinbag {
     private String id;
     private Set<? extends SmEvent> permissions = new HashSet<>();
@@ -66,7 +64,9 @@ public class Skinbag {
     public void setLocation(Location location) {
         this.location = location;
     }
-
+    /**
+     * Sends skinbag to new random location
+     */
     public void goToNewLocation() {
         Location randomLocation = Dispatcher.getInstance().getRandomLocation();
         if (randomLocation.isRoom() && !randomLocation.equals(location)) {
@@ -85,7 +85,10 @@ public class Skinbag {
             System.out.println(id + " go from " + prevLocation.getId() + " to " + location.getId());
         }
     }
-
+    /**
+     * Sends skinbag to new location
+     * @param newLocation Location
+     */
     public void goToNewLocation(Location newLocation) {
         List<HumanSensor> sensors = location.getDevicesByType(HumanSensor.class);
         if (sensors.size() == 1) {
@@ -100,7 +103,9 @@ public class Skinbag {
         }
         System.out.println(id + " go from " + prevLocation.getId() + " to " + location.getId());
     }
-
+    /**
+     * Skinbag performs random action from permissions
+     */
     public void doSomething() {
         Random generator = new Random();
         List<? extends SmEvent> values = permissions.stream().collect(Collectors.toList());

@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 
 public enum AirConditionerState implements ConsumingState {
-    ON(Resource.ELECTRICITY, 6D), OFF(), COOLING(Resource.ELECTRICITY, 5D), HEATING(Resource.ELECTRICITY, 5D), CHANGE_TEMPERATURE(), QUIET_MODE(Resource.ELECTRICITY, 2D);
+    ON(Resource.ELECTRICITY, 6D), OFF(), COOLING(Resource.ELECTRICITY, 5D), HEATING(Resource.ELECTRICITY, 5D), CHANGE_TEMPERATURE();
 
     AirConditionerState() {
         this(Collections.emptyMap());

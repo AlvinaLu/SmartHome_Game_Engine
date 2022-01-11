@@ -1,7 +1,5 @@
 package smarthome.servises;
 
-import smarthome.Dispatcher;
-
 import java.util.HashMap;
 import java.util.Map;
 

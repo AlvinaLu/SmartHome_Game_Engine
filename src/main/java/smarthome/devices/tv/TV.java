@@ -2,8 +2,6 @@ package smarthome.devices.tv;
 
 import smarthome.Dispatcher;
 import smarthome.devices.Device;
-
-import smarthome.devices.audio_station.AudioStationEvent;
 import smarthome.servises.Scheduler;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;

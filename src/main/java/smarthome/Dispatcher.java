@@ -11,6 +11,9 @@ import java.util.*;
 
 public class Dispatcher {
     private static Dispatcher instance;
+    /**
+     * Return instance
+     */
 
     public static Dispatcher getInstance() {
         if (instance == null) {
@@ -28,6 +31,10 @@ public class Dispatcher {
     private Dispatcher() {
 
     }
+    /**
+     * Initializing dispatcher to work with provided locations
+     * @param locations
+     */
 
     public void init(Set<? extends Location> locations) {
         this.locations = locations;
@@ -59,7 +66,10 @@ public class Dispatcher {
             mapDevice.put(dev.getId(), dev);
         }
     }
-
+    /**
+     * Send message to location or directly to device
+     * @param message Message
+     */
     public void sendMessage(Message<?> message) {
         if (message.getIdTo() != null) {
             Device<?> device = mapDevice.get(message.getIdTo());
@@ -98,7 +108,10 @@ public class Dispatcher {
         }
     }
 
-
+    /**
+     * @param  id device id
+     * @return Sensor device by ID
+     */
     public Sensor getSensor(String id) {
         if (mapDevice.get(id) instanceof Sensor) {
             return (Sensor) mapDevice.get(id);
@@ -108,6 +121,9 @@ public class Dispatcher {
             throw new IllegalStateException("Device is not a sensor");
         }
     }
+    /**
+     * @return random location
+     */
     public Location getRandomLocation(){
         Object[] locations = mapLocation.values().toArray();
         return (Location) locations[new Random().nextInt(locations.length)];

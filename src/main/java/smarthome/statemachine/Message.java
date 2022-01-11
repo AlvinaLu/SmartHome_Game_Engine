@@ -1,7 +1,6 @@
 package smarthome.statemachine;
 
 import java.util.Collections;
-import java.util.Locale;
 import java.util.Map;
 
 public class Message<EVENT extends SmEvent> {

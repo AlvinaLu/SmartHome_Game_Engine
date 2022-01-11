@@ -1,7 +1,6 @@
 package smarthome.serialization;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -10,9 +9,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import smarthome.devices.Device;
 import smarthome.statemachine.StateMachine;
 
-import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -22,7 +19,7 @@ public class DeviceDeserializer extends StdDeserializer<Device> {
     }
 
     @Override
-    public Device deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public Device deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) {
         try {
             JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
             Class<?> deviceClass = Class.forName(jsonNode.get("deviceClass").asText());

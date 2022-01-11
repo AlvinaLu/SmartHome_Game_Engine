@@ -2,6 +2,7 @@ package smarthome.devices.waterconsumer;
 
 import smarthome.devices.ConsumingState;
 import smarthome.devices.Resource;
+
 import java.util.Collections;
 import java.util.Map;
 

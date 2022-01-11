@@ -2,9 +2,6 @@ package smarthome.devices.watercloset;
 
 import smarthome.Dispatcher;
 import smarthome.devices.Device;
-import smarthome.devices.refrigerator.RefrigeratorEvent;
-import smarthome.devices.refrigerator.RefrigeratorState;
-import smarthome.devices.waterconsumer.WaterConsumerData;
 import smarthome.servises.Scheduler;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;

@@ -2,7 +2,6 @@ package smarthome.devices.kettle;
 
 import smarthome.Dispatcher;
 import smarthome.devices.Device;
-import smarthome.devices.refrigerator.RefrigeratorEvent;
 import smarthome.servises.Scheduler;
 import smarthome.statemachine.Message;
 import smarthome.statemachine.StateMachine;

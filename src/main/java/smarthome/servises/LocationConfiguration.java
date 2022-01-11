@@ -1,10 +1,10 @@
 package smarthome.servises;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.InjectableValues;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import smarthome.SmartHome;
 import smarthome.devices.Device;
 import smarthome.location.Location;
 import smarthome.serialization.DeviceDeserializer;
@@ -15,9 +15,11 @@ import smarthome.statemachine.SmEvent;
 
 import java.io.File;
 import java.util.Map;
-
+/**
+ * Stores location configuration
+ */
 public class LocationConfiguration {
-    public static final String LOCATION = "location.json";
+    public static final String LOCATION = SmartHome.name;
     private static LocationConfiguration instance;
 
     public static LocationConfiguration getInstance() {
@@ -46,17 +48,22 @@ public class LocationConfiguration {
         this.location = location;
 
     }
+    /**
+     * Load locations to json file
+     */
     public void load(){
         try {
-            location = objectMapper.readValue(new File(LOCATION), Location.class);
+            location = objectMapper.readValue(new File(LOCATION+".json"), Location.class);
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Save locations to json file
+     */
     public synchronized void save(){
         try {
-            this.objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(LOCATION), location);
+            this.objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(LOCATION+".json"), location);
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -67,7 +74,7 @@ public class LocationConfiguration {
     }
 
     public boolean isFileExist() {
-        return new File(LOCATION).exists();
+        return new File(LOCATION+".json").exists();
     }
 
 }

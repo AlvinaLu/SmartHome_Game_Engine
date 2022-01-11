@@ -1,18 +1,15 @@
 package smarthome;
 
-import smarthome.devices.Device;
 import smarthome.devices.DeviceFactory;
 import smarthome.devices.air_conditioner.AirConditioner;
 import smarthome.devices.air_conditioner.AirConditionerEvent;
 import smarthome.devices.alarmSystem.AlarmSystem;
-import smarthome.devices.alarmSystem.AlarmSystemEvent;
 import smarthome.devices.audio_station.AudioStation;
 import smarthome.devices.audio_station.AudioStationEvent;
 import smarthome.devices.coffee_machine.CoffeeMachine;
 import smarthome.devices.coffee_machine.CoffeeMachineEvent;
 import smarthome.devices.dishwasher.Dishwasher;
 import smarthome.devices.dishwasher.DishwasherEvent;
-import smarthome.devices.electricity_generator.Generator;
 import smarthome.devices.electricity_generator.GeneratorEvent;
 import smarthome.devices.heater.Heater;
 import smarthome.devices.heater.HeaterEvent;
@@ -50,7 +47,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Scenario2 {
 
-    public static void main(String[] args) {
+    public static void start() {
 
         DeviceFactory df = DeviceFactory.getInstance();
         Scheduler.getInstance().setTimeScale(100000);
@@ -80,9 +77,6 @@ public class Scenario2 {
 
             flatAndBalcony.setLocations(Set.of(flat, balcony));
 
-//            Skinbag skinbag = new Skinbag("GrandMother", Set.of(
-//                    RefrigeratorEvent.TURN_OFF, RefrigeratorEvent.TURN_ON, RefrigeratorEvent.CHANGE_TEMPERATURE,
-//                    LampEvent.TURN_ON, LampEvent.TURN_OFF));
 
             //husband and wife
             Skinbag tomas = new Skinbag("Tomas", getPermission("Tomas"));

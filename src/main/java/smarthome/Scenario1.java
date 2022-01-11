@@ -35,17 +35,17 @@ import smarthome.servises.LocationConfiguration;
 import smarthome.servises.Scheduler;
 import smarthome.skinbag.Skinbag;
 import smarthome.statemachine.Message;
-import smarthome.statemachine.SmEvent;
 import smarthome.statemachine.StateMachine;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class Scenario1 {
-    public static void main(String[] args) throws IOException {
+    public static void start() {
 
 
         DeviceFactory df = DeviceFactory.getInstance();

@@ -18,7 +18,10 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
     public StateMachine(NAME currentState) {
         this.currentState = currentState;
     }
-
+    /**
+     * Message processing
+     * @param message Message
+     */
     public void onMessage(Message<EVENT> message) {
         try {
             Transition<NAME, EVENT> transition = transitions.stream()
@@ -53,7 +56,10 @@ public abstract class StateMachine<NAME, EVENT extends SmEvent> {
     }
 
 
-
+    /**
+     * Performs action on state enter
+     * @param currentState State we entered
+     */
     protected abstract void onEnter(NAME currentState);
 
     public void setCurrentTask(Future<?> currentTask) {
