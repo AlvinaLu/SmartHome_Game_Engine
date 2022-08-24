@@ -1,0 +1,35 @@
+{
+  "id" : "House",
+  "devices" : [ {
+    "deviceClass" : "smarthome.sensors.TemperatureSensor",
+    "deviceData" : {
+      "value" : null
+    },
+    "id" : "TemperatureSensor#1"
+  }, {
+    "deviceClass" : "smarthome.devices.coffee_machine.CoffeeMachine",
+    "deviceData" : {
+      "electricityConsumption" : 0,
+      "electricityPerHour" : 0,
+      "resourceHours" : 0,
+      "coffee" : "Latte"
+    },
+    "id" : "CoffeeMachine#1",
+    "messageData" : { },
+    "currentState" : "ON"
+  }, {
+    "deviceClass" : "smarthome.devices.refrigerator.Refrigerator",
+    "deviceData" : {
+      "currentTemperature" : 25,
+      "electricityConsumption" : 0,
+      "electricityPerHour" : 0,
+      "resourceHours" : 0,
+      "targetTemperature" : 22
+    },
+    "id" : "Refrigerator#1",
+    "messageData" : { },
+    "currentState" : "ON"
+  } ],
+  "locations" : [ ],
+  "skinbags" : [ ]
+}

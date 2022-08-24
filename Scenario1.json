@@ -1,0 +1,1308 @@
+{
+  "id" : "House and grounds",
+  "devices" : [ {
+    "deviceClass" : "smarthome.devices.electricity_generator.Generator",
+    "deviceData" : null,
+    "id" : "Generator#1",
+    "messageData" : { },
+    "currentState" : "ON"
+  }, {
+    "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+    "deviceData" : { },
+    "id" : "AlarmSystem#1",
+    "messageData" : null,
+    "currentState" : "ON"
+  }, {
+    "deviceClass" : "smarthome.sensors.ElectricitySensor",
+    "deviceData" : {
+      "value" : 0.0
+    },
+    "id" : "ElectricitySensor#1"
+  } ],
+  "locations" : [ {
+    "id" : "House",
+    "devices" : [ ],
+    "locations" : [ {
+      "id" : "Foyer and stars",
+      "devices" : [ {
+        "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+        "deviceData" : { },
+        "id" : "AlarmSystem#12",
+        "messageData" : null,
+        "currentState" : "ON"
+      }, {
+        "deviceClass" : "smarthome.devices.lamp.Lamp",
+        "deviceData" : {
+          "electricityConsumption" : 0,
+          "electricityPerHour" : 0,
+          "resourceHours" : 0
+        },
+        "id" : "Lamp#29",
+        "messageData" : { },
+        "currentState" : "ON"
+      }, {
+        "deviceClass" : "smarthome.sensors.TemperatureSensor",
+        "deviceData" : {
+          "value" : 21.665188182962076
+        },
+        "id" : "TemperatureSensor#11"
+      }, {
+        "deviceClass" : "smarthome.devices.heater.Heater",
+        "deviceData" : {
+          "currentTemperature" : 0,
+          "electricityConsumption" : 0,
+          "electricityPerHour" : 0,
+          "resourceHours" : 0,
+          "targetTemperature" : 0
+        },
+        "id" : "Heater#12",
+        "messageData" : { },
+        "currentState" : "OFF"
+      }, {
+        "deviceClass" : "smarthome.sensors.HumanSensor",
+        "deviceData" : {
+          "value" : 3.0
+        },
+        "id" : "HumanSensor#11"
+      } ],
+      "locations" : [ ],
+      "skinbags" : [ ],
+      "room" : true
+    }, {
+      "id" : "Floor#1",
+      "devices" : [ ],
+      "locations" : [ {
+        "id" : "Family room",
+        "devices" : [ {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#6",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#7",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.audio_station.AudioStation",
+          "deviceData" : {
+            "currentVolume" : 10,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "audio" : null
+          },
+          "id" : "AudioStation#1",
+          "messageData" : null,
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#3",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#5",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.tv.TV",
+          "deviceData" : {
+            "currentVolume" : 20,
+            "currentСhannel" : 1,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "TV#1",
+          "messageData" : null,
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 19.187228188811602
+          },
+          "id" : "TemperatureSensor#2"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#3",
+          "messageData" : null,
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#8",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : -1.0
+          },
+          "id" : "HumanSensor#2"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ {
+          "id" : "Dad",
+          "permissions" : [ {
+            "eventClass" : "smarthome.devices.oven.OvenEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_DOWN"
+          }, {
+            "eventClass" : "smarthome.devices.stove.StoveEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.stove.StoveEvent",
+            "eventName" : "LOCK"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_UP"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "CHANGE_VOLUME"
+          }, {
+            "eventClass" : "smarthome.devices.refrigerator.RefrigeratorEvent",
+            "eventName" : "CHANGE_TEMPERATURE"
+          }, {
+            "eventClass" : "smarthome.devices.oven.OvenEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_DOWN"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "QUICK_WASH"
+          }, {
+            "eventClass" : "smarthome.devices.oven.OvenEvent",
+            "eventName" : "CHANGE_TEMPERATURE"
+          }, {
+            "eventClass" : "smarthome.devices.lamp.LampEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.refrigerator.RefrigeratorEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "ECO"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.stove.StoveEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.watercloset.WaterClosetEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_UP"
+          }, {
+            "eventClass" : "smarthome.devices.oven.OvenEvent",
+            "eventName" : "SET_MODE"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.stove.StoveEvent",
+            "eventName" : "UNLOCK"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "CHANGE_CHANNEL"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_HOT_WATER"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "PLAY"
+          }, {
+            "eventClass" : "smarthome.devices.watercloset.WaterClosetEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "TEMPERATURE_MAINTENANCE"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "ANTI_ALLERGY"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "INTENSIVE"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "GLASS"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "HEAT"
+          }, {
+            "eventClass" : "smarthome.devices.refrigerator.RefrigeratorEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "POURS_COFFEE"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.lamp.LampEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "PAUSE"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "TIMER_MODE"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_COLD_WATER"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "WOOL"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_WARM_WATER"
+          } ]
+        } ],
+        "room" : true
+      }, {
+        "id" : "Living room",
+        "devices" : [ {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 21.287157084406577
+          },
+          "id" : "TemperatureSensor#3"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#4",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#10",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#4",
+          "messageData" : null,
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : -2.0
+          },
+          "id" : "HumanSensor#3"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#11",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#12",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#9",
+          "messageData" : { },
+          "currentState" : "ON"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ {
+          "id" : "Hamster Boo",
+          "permissions" : [ ]
+        }, {
+          "id" : "Cat Tom",
+          "permissions" : [ ]
+        } ],
+        "room" : true
+      }, {
+        "id" : "Bath#1",
+        "devices" : [ {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#17",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 22.603716048789664
+          },
+          "id" : "TemperatureSensor#5"
+        }, {
+          "deviceClass" : "smarthome.devices.waterconsumer.WaterConsumer",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "WaterConsumer#2",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.washing_machine.WashingMachine",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "WashingMachine#1",
+          "messageData" : null,
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : 1.0
+          },
+          "id" : "HumanSensor#5"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#6",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#18",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#6",
+          "messageData" : null,
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.WaterLeakSensor",
+          "deviceData" : {
+            "value" : null
+          },
+          "id" : "WaterLeakSensor#2"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ ],
+        "room" : true
+      }, {
+        "id" : "Dinning room",
+        "devices" : [ {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#5",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 18.694686370593313
+          },
+          "id" : "TemperatureSensor#4"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#15",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#16",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#13",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#14",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#5",
+          "messageData" : null,
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : 1.0
+          },
+          "id" : "HumanSensor#4"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ ],
+        "room" : true
+      }, {
+        "id" : "Kitchen",
+        "devices" : [ {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#3",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.refrigerator.Refrigerator",
+          "deviceData" : {
+            "currentTemperature" : 25,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 4
+          },
+          "id" : "Refrigerator#1",
+          "messageData" : { },
+          "currentState" : "BROKEN"
+        }, {
+          "deviceClass" : "smarthome.devices.dishwasher.Dishwasher",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Dishwasher#1",
+          "messageData" : null,
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#2",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.coffee_machine.CoffeeMachine",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "coffee" : null
+          },
+          "id" : "CoffeeMachine#1",
+          "messageData" : null,
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#2",
+          "messageData" : null,
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.waterconsumer.WaterConsumer",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "WaterConsumer#1",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.sensors.WaterLeakSensor",
+          "deviceData" : {
+            "value" : null
+          },
+          "id" : "WaterLeakSensor#1"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : 2.0
+          },
+          "id" : "HumanSensor#1"
+        }, {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 21.97702525791917
+          },
+          "id" : "TemperatureSensor#1"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#1",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#1",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#2",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#4",
+          "messageData" : { },
+          "currentState" : "ON"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ {
+          "id" : "Mom",
+          "permissions" : [ {
+            "eventClass" : "smarthome.devices.oven.OvenEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_DOWN"
+          }, {
+            "eventClass" : "smarthome.devices.stove.StoveEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.stove.StoveEvent",
+            "eventName" : "LOCK"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_UP"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "CHANGE_VOLUME"
+          }, {
+            "eventClass" : "smarthome.devices.refrigerator.RefrigeratorEvent",
+            "eventName" : "CHANGE_TEMPERATURE"
+          }, {
+            "eventClass" : "smarthome.devices.oven.OvenEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_DOWN"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "QUICK_WASH"
+          }, {
+            "eventClass" : "smarthome.devices.oven.OvenEvent",
+            "eventName" : "CHANGE_TEMPERATURE"
+          }, {
+            "eventClass" : "smarthome.devices.lamp.LampEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.refrigerator.RefrigeratorEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "ECO"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.stove.StoveEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.watercloset.WaterClosetEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_UP"
+          }, {
+            "eventClass" : "smarthome.devices.oven.OvenEvent",
+            "eventName" : "SET_MODE"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.stove.StoveEvent",
+            "eventName" : "UNLOCK"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "CHANGE_CHANNEL"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_HOT_WATER"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "PLAY"
+          }, {
+            "eventClass" : "smarthome.devices.watercloset.WaterClosetEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "TEMPERATURE_MAINTENANCE"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "ANTI_ALLERGY"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "INTENSIVE"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.dishwasher.DishwasherEvent",
+            "eventName" : "GLASS"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "HEAT"
+          }, {
+            "eventClass" : "smarthome.devices.refrigerator.RefrigeratorEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "POURS_COFFEE"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.lamp.LampEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "PAUSE"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.kettle.KettleEvent",
+            "eventName" : "TIMER_MODE"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_COLD_WATER"
+          }, {
+            "eventClass" : "smarthome.devices.washing_machine.WashingMachineEvent",
+            "eventName" : "WOOL"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_WARM_WATER"
+          } ]
+        } ],
+        "room" : true
+      } ],
+      "skinbags" : [ ],
+      "room" : false
+    }, {
+      "id" : "Garage",
+      "devices" : [ {
+        "deviceClass" : "smarthome.devices.lamp.Lamp",
+        "deviceData" : {
+          "electricityConsumption" : 0,
+          "electricityPerHour" : 0,
+          "resourceHours" : 0
+        },
+        "id" : "Lamp#30",
+        "messageData" : { },
+        "currentState" : "ON"
+      }, {
+        "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+        "deviceData" : { },
+        "id" : "AlarmSystem#13",
+        "messageData" : null,
+        "currentState" : "ON"
+      }, {
+        "deviceClass" : "smarthome.sensors.HumanSensor",
+        "deviceData" : {
+          "value" : 1.0
+        },
+        "id" : "HumanSensor#12"
+      } ],
+      "locations" : [ ],
+      "skinbags" : [ ],
+      "room" : true
+    }, {
+      "id" : "Floor#2",
+      "devices" : [ ],
+      "locations" : [ {
+        "id" : "Bath#2",
+        "devices" : [ {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : 0.0
+          },
+          "id" : "HumanSensor#6"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#19",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#20",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.WaterLeakSensor",
+          "deviceData" : {
+            "value" : null
+          },
+          "id" : "WaterLeakSensor#3"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#7",
+          "messageData" : null,
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 21.40938425966522
+          },
+          "id" : "TemperatureSensor#6"
+        }, {
+          "deviceClass" : "smarthome.devices.waterconsumer.WaterConsumer",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "WaterConsumer#3",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#7",
+          "messageData" : { },
+          "currentState" : "OFF"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ ],
+        "room" : true
+      }, {
+        "id" : "Bedroom#1",
+        "devices" : [ {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 22.94220376820546
+          },
+          "id" : "TemperatureSensor#8"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#23",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : 1.0
+          },
+          "id" : "HumanSensor#8"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#9",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#24",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#9",
+          "messageData" : null,
+          "currentState" : "ON"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ ],
+        "room" : true
+      }, {
+        "id" : "Bath#3",
+        "devices" : [ {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#21",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 18.385190831969247
+          },
+          "id" : "TemperatureSensor#7"
+        }, {
+          "deviceClass" : "smarthome.sensors.WaterLeakSensor",
+          "deviceData" : {
+            "value" : null
+          },
+          "id" : "WaterLeakSensor#4"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#8",
+          "messageData" : null,
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : 1.0
+          },
+          "id" : "HumanSensor#7"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#8",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.waterconsumer.WaterConsumer",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "WaterConsumer#4",
+          "messageData" : null,
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#22",
+          "messageData" : { },
+          "currentState" : "ON"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ {
+          "id" : "Daughter Liza",
+          "permissions" : [ {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_COLD_WATER"
+          }, {
+            "eventClass" : "smarthome.devices.lamp.LampEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "CHANGE_VOLUME"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "PLAY"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "PAUSE"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_WARM_WATER"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_UP"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_HOT_WATER"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_DOWN"
+          }, {
+            "eventClass" : "smarthome.devices.audio_station.AudioStationEvent",
+            "eventName" : "TURN_DOWN"
+          }, {
+            "eventClass" : "smarthome.devices.lamp.LampEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "TURN_UP"
+          }, {
+            "eventClass" : "smarthome.devices.watercloset.WaterClosetEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.watercloset.WaterClosetEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.tv.TVEvent",
+            "eventName" : "CHANGE_CHANNEL"
+          }, {
+            "eventClass" : "smarthome.devices.coffee_machine.CoffeeMachineEvent",
+            "eventName" : "POURS_COFFEE"
+          } ]
+        } ],
+        "room" : true
+      }, {
+        "id" : "Bedroom#2",
+        "devices" : [ {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#10",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#25",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : 1.0
+          },
+          "id" : "HumanSensor#9"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#26",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#10",
+          "messageData" : null,
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 20.93538907870519
+          },
+          "id" : "TemperatureSensor#9"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ ],
+        "room" : true
+      }, {
+        "id" : "Bedroom#3",
+        "devices" : [ {
+          "deviceClass" : "smarthome.sensors.TemperatureSensor",
+          "deviceData" : {
+            "value" : 23.469408661361275
+          },
+          "id" : "TemperatureSensor#10"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#28",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.sensors.HumanSensor",
+          "deviceData" : {
+            "value" : -2.0
+          },
+          "id" : "HumanSensor#10"
+        }, {
+          "deviceClass" : "smarthome.devices.heater.Heater",
+          "deviceData" : {
+            "currentTemperature" : 0,
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0,
+            "targetTemperature" : 0
+          },
+          "id" : "Heater#11",
+          "messageData" : { },
+          "currentState" : "OFF"
+        }, {
+          "deviceClass" : "smarthome.devices.lamp.Lamp",
+          "deviceData" : {
+            "electricityConsumption" : 0,
+            "electricityPerHour" : 0,
+            "resourceHours" : 0
+          },
+          "id" : "Lamp#27",
+          "messageData" : { },
+          "currentState" : "ON"
+        }, {
+          "deviceClass" : "smarthome.devices.alarmSystem.AlarmSystem",
+          "deviceData" : { },
+          "id" : "AlarmSystem#11",
+          "messageData" : null,
+          "currentState" : "ON"
+        } ],
+        "locations" : [ ],
+        "skinbags" : [ {
+          "id" : "Baby Bart",
+          "permissions" : [ {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_WARM_WATER"
+          }, {
+            "eventClass" : "smarthome.devices.watercloset.WaterClosetEvent",
+            "eventName" : "TURN_ON"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.watercloset.WaterClosetEvent",
+            "eventName" : "TURN_OFF"
+          }, {
+            "eventClass" : "smarthome.devices.waterconsumer.WaterConsumerEvent",
+            "eventName" : "TURN_ON_COLD_WATER"
+          } ]
+        } ],
+        "room" : true
+      } ],
+      "skinbags" : [ ],
+      "room" : false
+    } ],
+    "skinbags" : [ ],
+    "room" : false
+  }, {
+    "id" : "Greengrass",
+    "devices" : [ ],
+    "locations" : [ ],
+    "skinbags" : [ ],
+    "room" : true
+  } ],
+  "skinbags" : [ ],
+  "room" : false
+}
